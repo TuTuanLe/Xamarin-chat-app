@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="FrontendApp.Views.ChatPage"
+             BackgroundColor="White"
+             >
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid ColumnDefinitions="auto, *,auto, auto" RowDefinitions="auto" HeightRequest="50" >
+
+                <Frame 
+                    Margin="10"                    
+                    Grid.Column="0" 
+                    Grid.Row="0"
+                    CornerRadius="20" 
+                    VerticalOptions="Start"
+                    HorizontalOptions="Start"
+                    Padding="0"
+                    IsClippedToBounds="True">
+                    <Image
+                        Source="avatar" 
+                        HorizontalOptions="Center"
+                        WidthRequest="40" HeightRequest="40"
+                        VerticalOptions="Center"
+                        Aspect="AspectFill"
+                        BackgroundColor="Transparent"
+                    />
+                </Frame>
+
+                <Label 
+                    Text="Chat"
+                    Grid.Column="1"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Start"
+                    TextColor="Black"
+                    FontSize="23"
+                    FontAttributes="Bold"
+                    >
+                </Label>
+
+                <Frame 
+                    Margin="0,10,0,10"                    
+                    Grid.Column="2" 
+                    CornerRadius="20" 
+                    VerticalOptions="End"
+                    HorizontalOptions="End"
+                    Padding="10"
+                    IsClippedToBounds="True">
+                    <Image Source="camera24" 
+                        HorizontalOptions="Center"
+                        WidthRequest="20" HeightRequest="20"
+                        VerticalOptions="Center"
+                        Aspect="AspectFill"
+                    />
+                </Frame>
+
+                <Frame 
+                    Margin="10"                    
+                    Grid.Column="3" 
+                                        
+                    CornerRadius="20" 
+                    VerticalOptions="End"
+                    HorizontalOptions="End"
+                    Padding="10"
+                    IsClippedToBounds="True">
+                    <ImageButton
+                        x:Name="btnAddGroup"
+                        Source="icons8edit120" 
+                                 
+                        HorizontalOptions="Center"
+                        WidthRequest="20" HeightRequest="20"
+                        VerticalOptions="Center"
+                        Aspect="AspectFill"
+                        BackgroundColor="Transparent"
+                        Clicked="btnAddGroup_Clicked"
+                    />
+                </Frame>
+
+
+
+
+            </Grid>
+
+            <ScrollView>
+                <StackLayout>
+
+                    <!--search-->
+                <Grid >
+                    <Frame Padding="0" CornerRadius="20" Margin="15,10" BackgroundColor="#F6F5F5" HasShadow="False">
+                        <Grid ColumnDefinitions="auto, *, auto" Margin="10,0,10,0" VerticalOptions="CenterAndExpand">
+                            <Image 
+                                        Grid.Column="0" 
+                                        Source="search" 
+                                        WidthRequest="20" 
+                                        BackgroundColor="Transparent" 
+                                        VerticalOptions="Center"  
+                                        Aspect="AspectFill"
+                                        >
+                            </Image>
+
+                            <Label Grid.Column="1"  Text="Search..." FontSize="15"   HorizontalTextAlignment="Start" VerticalTextAlignment="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer x:Name="TappedSearch" Tapped="TappedSearch_Tapped"  /> 
+                                    </Label.GestureRecognizers>
+                            </Label>
+                            <Frame
+                                        Grid.Column="2"
+                                        Padding="0"
+                                        Margin="0,10,5,10"
+                                        CornerRadius="10"
+                            
+                                        >
+                                <Label Text=" NO READ" FontSize="11" Margin="5" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                            </Frame>
+
+                        </Grid>
+                    </Frame>
+                </Grid>
+                
+                 <!--active friend-->
+                    <!--<AbsoluteLayout  Padding="0" HorizontalOptions="FillAndExpand">
+                        <Grid RowDefinitions="*" ColumnDefinitions="*,auto" Rotation="270">
+                            <ListView  Grid.Column="1"  SeparatorVisibility="None"
+                                  SelectionMode="None" ItemsSource="{Binding Friends}"  WidthRequest="100" RowHeight="70" HeightRequest="300" HorizontalOptions="FillAndExpand"   VerticalOptions="Start" BackgroundColor="Transparent">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell >
+                                            <Grid ColumnDefinitions="auto,auto,*" RowDefinitions="auto,auto" Padding="10, 3,10,0">
+                                                <Frame 
+                                               VerticalOptions="CenterAndExpand"
+                                               Grid.Column="0" 
+                                               Grid.RowSpan="2"
+                                               CornerRadius="20" 
+                                               Padding="0"
+                                               IsClippedToBounds="True">
+                                                    <Image Source="{Binding ImgURL}" Rotation="90" 
+                                               HorizontalOptions="Center"
+                                               WidthRequest="40" HeightRequest="40"
+                                               VerticalOptions="Center"
+                                               Aspect="AspectFill"
+                                             />
+                                                </Frame>
+                                            </Grid>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+              
+                        </Grid>
+                        </AbsoluteLayout>-->
+                  
+                    <!--get list friend-->
+                <ListView   SeparatorVisibility="None"
+                              SelectionMode="None" ItemsSource="{Binding Friends}" RowHeight="70" HeightRequest="600" HorizontalOptions="FillAndExpand"   VerticalOptions="Start" BackgroundColor="Transparent">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell >
+                                <Grid ColumnDefinitions="auto,auto,*" RowDefinitions="auto,auto" Padding="10, 3,10,0">
+                                    <Frame 
+                                       VerticalOptions="CenterAndExpand"
+                                       Grid.Column="0" 
+                                       Grid.RowSpan="2"
+                                       CornerRadius="20" 
+                                       Padding="0"
+                                       IsClippedToBounds="True">
+                                        <Image Source="{Binding ImgURL}" 
+                                           HorizontalOptions="Center"
+                                           WidthRequest="40" HeightRequest="40"
+                                           VerticalOptions="Center"
+                                           Aspect="AspectFill"
+                                   />
+                                    </Frame>
+                                        <Frame IsVisible="{Binding status}"
+                                           TranslationX="20"
+                                           TranslationY="20"
+                                           VerticalOptions="CenterAndExpand"
+                                           HorizontalOptions="CenterAndExpand"
+                                           Grid.Column="0" 
+                                           Grid.RowSpan="2"
+                                           CornerRadius="20" 
+                                           Padding="0"
+                                           IsClippedToBounds="True">
+
+                                        <Image Source="ok" 
+                                           HorizontalOptions="Center"
+                                           WidthRequest="15" HeightRequest="15"
+                                           VerticalOptions="Center"
+                                           Aspect="AspectFill"
+                                           BackgroundColor="Transparent"
+                                   />
+                                    </Frame>
+                                        <Label Grid.Column="1" Grid.Row="0" Margin="10,0,0,0" Text="{Binding Name}" TextColor="{Binding ColorSeen}" FontSize="15" FontAttributes="Bold"></Label>
+                                        <Label IsVisible="true" WidthRequest="200" Grid.Column="1" Grid.Row="1" Margin="10,0,0,0" VerticalOptions="CenterAndExpand" Text="{Binding MessageNew}"  FontAttributes="{Binding FontAttribute}" LineBreakMode="TailTruncation" TextColor="{Binding ColorSeen}"></Label>
+                                        <Label Grid.Column="2" Grid.Row="0" Text="{Binding DateSend}"  HorizontalOptions="End" TextColor="{Binding ColorSeen}" ></Label>
+                                    <Frame
+                                        IsVisible="{Binding IsSeen}"
+                                        HorizontalOptions="End"
+                                        BackgroundColor="#1C76D2"
+                                        Grid.Column="2" Grid.Row="1"
+                                        CornerRadius="20" 
+                                        WidthRequest="17"
+                                        Padding="0"
+                                        IsClippedToBounds="True">
+                                        <Label  Grid.Column="2" Grid.Row="1" Text="{Binding CountUnRead}"  TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+
+                                    </Frame>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                </StackLayout>
+            </ScrollView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

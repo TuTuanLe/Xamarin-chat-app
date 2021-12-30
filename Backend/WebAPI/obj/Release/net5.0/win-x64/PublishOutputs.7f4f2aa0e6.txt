@@ -1,0 +1,12 @@
+D:\Xamarin\Project_Chat_App\Backend\WebAPI\obj\Release\net5.0\win-x64\PubTmp\Out\WebAPI.exe
+D:\Xamarin\Project_Chat_App\Backend\WebAPI\obj\Release\net5.0\win-x64\PubTmp\Out\appsettings.Development.json
+D:\Xamarin\Project_Chat_App\Backend\WebAPI\obj\Release\net5.0\win-x64\PubTmp\Out\appsettings.json
+D:\Xamarin\Project_Chat_App\Backend\WebAPI\obj\Release\net5.0\win-x64\PubTmp\Out\WebAPI.dll
+D:\Xamarin\Project_Chat_App\Backend\WebAPI\obj\Release\net5.0\win-x64\PubTmp\Out\WebAPI.deps.json
+D:\Xamarin\Project_Chat_App\Backend\WebAPI\obj\Release\net5.0\win-x64\PubTmp\Out\WebAPI.runtimeconfig.json
+D:\Xamarin\Project_Chat_App\Backend\WebAPI\obj\Release\net5.0\win-x64\PubTmp\Out\WebAPI.pdb
+D:\Xamarin\Project_Chat_App\Backend\WebAPI\obj\Release\net5.0\win-x64\PubTmp\Out\Microsoft.OpenApi.dll
+D:\Xamarin\Project_Chat_App\Backend\WebAPI\obj\Release\net5.0\win-x64\PubTmp\Out\Newtonsoft.Json.dll
+D:\Xamarin\Project_Chat_App\Backend\WebAPI\obj\Release\net5.0\win-x64\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
+D:\Xamarin\Project_Chat_App\Backend\WebAPI\obj\Release\net5.0\win-x64\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Xamarin\Project_Chat_App\Backend\WebAPI\obj\Release\net5.0\win-x64\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll

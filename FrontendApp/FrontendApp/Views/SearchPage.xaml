@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FrontendApp.Views.SearchPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White"
+             >
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame Padding="0">
+            <Grid RowDefinitions="*" ColumnDefinitions="auto, *" Padding="5">
+                <Image Grid.Row="0" Grid.Column="0"  Source="back48" WidthRequest="35"></Image>
+                <Entry Grid.Row="0" Grid.Column="1" Placeholder="Search..." ></Entry>
+            </Grid>
+            </Frame>
+        </StackLayout>
+            
+    </ContentPage.Content>
+</ContentPage>
