@@ -11,6 +11,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.SignalR.Client": "6.0.1",
           "NETStandard.Library": "2.0.3",
+          "Plugin.AudioRecorder": "1.1.0",
           "Xamarin.Essentials": "1.7.0",
           "Xamarin.Forms": "5.0.0.2291"
         },
@@ -209,6 +210,14 @@
       "NETStandard.Library/2.0.3": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0"
+        }
+      },
+      "Plugin.AudioRecorder/1.1.0": {
+        "runtime": {
+          "lib/netstandard2.0/Plugin.AudioRecorder.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "System.Buffers/4.5.1": {
@@ -486,6 +495,13 @@
       "sha512": "sha512-st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
       "path": "netstandard.library/2.0.3",
       "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
+    },
+    "Plugin.AudioRecorder/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qa8tAuqWeIKfnFLVKhGgaHhbtw7T2Ec/5smgJstyatQ97uViUIqAVTpzdyij11VOovxTGXO4xBBkYanJmzv21g==",
+      "path": "plugin.audiorecorder/1.1.0",
+      "hashPath": "plugin.audiorecorder.1.1.0.nupkg.sha512"
     },
     "System.Buffers/4.5.1": {
       "type": "package",

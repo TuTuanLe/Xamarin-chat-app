@@ -20,6 +20,7 @@ public class MonoPackageManager_Resources {
 		"Microsoft.Extensions.Logging.dll",
 		"Microsoft.Extensions.Options.dll",
 		"Microsoft.Extensions.Primitives.dll",
+		"Plugin.AudioRecorder.dll",
 		"System.Diagnostics.DiagnosticSource.dll",
 		"System.IO.Pipelines.dll",
 		"System.Text.Encodings.Web.dll",

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "mErmx1zabjHLOrCK5HsAavAq8MbW30x1dit1uwrJLK56QunBq6t07kECGYsXmLAjaEq0Dx06Jh+q6BNfDy8fAg==",
+  "dgSpecHash": "BDUz19zwojLcByEJp1GDyZeIPyVf3fjT32qJigrrsAA/LSdxeu+yxlzb6WV1xdAcF0clZaVqbwWng6ExweJdVQ==",
   "success": true,
   "projectFilePath": "D:\\Xamarin\\Project_Chat_App\\FrontendApp\\FrontendApp.Android\\FrontendApp.Android.csproj",
   "expectedPackageFiles": [
@@ -19,6 +19,7 @@
     "C:\\Users\\tutua\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\tutua\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
     "C:\\Users\\tutua\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\tutua\\.nuget\\packages\\plugin.audiorecorder\\1.1.0\\plugin.audiorecorder.1.1.0.nupkg.sha512",
     "C:\\Users\\tutua\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\tutua\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "C:\\Users\\tutua\\.nuget\\packages\\system.io.pipelines\\6.0.1\\system.io.pipelines.6.0.1.nupkg.sha512",

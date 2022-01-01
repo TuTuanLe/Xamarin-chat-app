@@ -1,10 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using WebAPI.Models;
+
+using System.Web;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 
 namespace WebAPI.Controllers
 {
@@ -13,10 +20,101 @@ namespace WebAPI.Controllers
     public class HomeController : ControllerBase
     {
         private readonly MessengeChatTestContext messengeChat;
-        public HomeController(MessengeChatTestContext messenge)
+        private readonly ILogger<HomeController> _logger;
+        private readonly IWebHostEnvironment _environment;
+        public HomeController(MessengeChatTestContext messenge, ILogger<HomeController> logger,
+            IWebHostEnvironment environment)
         {
             this.messengeChat = messenge;
+            this._logger = logger;
+            this._environment = environment ?? throw new ArgumentNullException(nameof(environment));
+
         }
+
+        [HttpPost]
+        [Route("image")]
+        public async Task<ActionResult> PostImage()
+        {
+            Account account = new Account(
+              "uit-information",
+              "758822263555998",
+              "aW_PQSGalL-ITWJUaux-cos-JEA");
+            Cloudinary _cloudinary = new Cloudinary(account);
+           
+
+
+            try
+            {
+                var httpRequest = HttpContext.Request;
+                if (httpRequest.Form.Files.Count > 0)
+                {
+                    foreach (var file in httpRequest.Form.Files)
+                    {
+
+                            var uploadParams = new ImageUploadParams()
+                            {
+                                File = new FileDescription(file.FileName, file.OpenReadStream()),
+                                PublicId ="tutuanle/image/upload/"+ file.FileName.Split('.')[0]
+
+                            };
+
+                            var uploadResult =  _cloudinary.Upload(uploadParams);
+                     
+                        return Ok(uploadResult.Url);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "error");
+                return new StatusCodeResult(500);
+            }
+            return Ok(1);
+        }
+
+
+        [HttpPost]
+        [Route("video")]
+        public async Task<ActionResult> PostVideo()
+        {
+            Account account = new Account(
+              "uit-information",
+              "758822263555998",
+              "aW_PQSGalL-ITWJUaux-cos-JEA");
+            Cloudinary _cloudinary = new Cloudinary(account);
+
+
+
+            try
+            {
+                var httpRequest = HttpContext.Request;
+                if (httpRequest.Form.Files.Count > 0)
+                {
+                    foreach (var file in httpRequest.Form.Files)
+                    {
+
+                        var uploadParams = new VideoUploadParams()
+                        {
+                            File = new FileDescription(file.FileName, file.OpenReadStream()),
+                            PublicId = "tutuanle/record/upload/" + file.FileName.Split('.')[0]
+
+                        };
+
+                        var uploadResult = _cloudinary.Upload(uploadParams);
+
+                        return Ok(uploadResult.Url);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "error");
+                return new StatusCodeResult(500);
+            }
+            return Ok(1);
+        }
+
+
         [HttpGet("{userId}")]
 
         public IActionResult GetUser(int userId)
@@ -87,6 +185,16 @@ namespace WebAPI.Controllers
                               select ms.Content);
             return Ok(MessageNew.FirstOrDefault());
         }
+
+        [HttpGet("CountMessaging")]
+
+        public IActionResult GetCountMessaging()
+        {
+
+
+            return Ok(messengeChat.Messagings.Count());
+        }
+
 
     }
 }

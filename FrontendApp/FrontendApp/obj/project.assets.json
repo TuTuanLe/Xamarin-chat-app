@@ -231,6 +231,15 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
+      "Plugin.AudioRecorder/1.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Plugin.AudioRecorder.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Plugin.AudioRecorder.dll": {}
+        }
+      },
       "System.Buffers/4.5.1": {
         "type": "package",
         "compile": {
@@ -889,6 +898,27 @@
         "lib/netstandard1.0/_._",
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
+      ]
+    },
+    "Plugin.AudioRecorder/1.1.0": {
+      "sha512": "qa8tAuqWeIKfnFLVKhGgaHhbtw7T2Ec/5smgJstyatQ97uViUIqAVTpzdyij11VOovxTGXO4xBBkYanJmzv21g==",
+      "type": "package",
+      "path": "plugin.audiorecorder/1.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/monoandroid81/Plugin.AudioRecorder.dll",
+        "lib/monoandroid81/Plugin.AudioRecorder.dll.mdb",
+        "lib/monoandroid81/Plugin.AudioRecorder.pdb",
+        "lib/netcore50/Plugin.AudioRecorder.dll",
+        "lib/netcore50/Plugin.AudioRecorder.pdb",
+        "lib/netstandard2.0/Plugin.AudioRecorder.dll",
+        "lib/netstandard2.0/Plugin.AudioRecorder.pdb",
+        "lib/portable45-net45+win8+wpa81/Plugin.AudioRecorder.dll",
+        "lib/xamarinios10/Plugin.AudioRecorder.dll",
+        "lib/xamarinios10/Plugin.AudioRecorder.pdb",
+        "plugin.audiorecorder.1.1.0.nupkg.sha512",
+        "plugin.audiorecorder.nuspec"
       ]
     },
     "System.Buffers/4.5.1": {
@@ -1565,6 +1595,7 @@
     ".NETStandard,Version=v2.0": [
       "Microsoft.AspNetCore.SignalR.Client >= 6.0.1",
       "NETStandard.Library >= 2.0.3",
+      "Plugin.AudioRecorder >= 1.1.0",
       "Xamarin.Essentials >= 1.7.0",
       "Xamarin.Forms >= 5.0.0.2291"
     ]
@@ -1622,6 +1653,10 @@
             "target": "Package",
             "version": "[2.0.3, )",
             "autoReferenced": true
+          },
+          "Plugin.AudioRecorder": {
+            "target": "Package",
+            "version": "[1.1.0, )"
           },
           "Xamarin.Essentials": {
             "target": "Package",

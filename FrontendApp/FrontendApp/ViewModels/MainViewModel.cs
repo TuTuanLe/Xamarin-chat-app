@@ -1,12 +1,15 @@
 ﻿using FrontendApp.Helpers;
 using FrontendApp.Models;
 using Microsoft.AspNetCore.SignalR.Client;
+using Plugin.AudioRecorder;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace FrontendApp.ViewModels
@@ -130,8 +133,20 @@ namespace FrontendApp.ViewModels
                 OnPropertyChanged();
             }
         }
+        public string _AudioRecordFileUrl;
 
-
+        public string AudioRecordFileUrl
+        {
+            get
+            {
+                return _AudioRecordFileUrl;
+            }
+            set
+            {
+                _AudioRecordFileUrl = value;
+                OnPropertyChanged();
+            }
+        }
 
         private HubConnection hubConnection;
 
@@ -139,8 +154,11 @@ namespace FrontendApp.ViewModels
         public Command ConnectCommand { get; }
         public Command DisconnectCommand { get; }
         public Command SigninCommand { get; }
-        
-        
+        public Command PickImageCommand { get; }
+        public Command AudioRecordComand { get; }
+
+        public readonly AudioRecorderService audioRecorderService = new AudioRecorderService();
+        public readonly AudioPlayer audioPlayer = new AudioPlayer();
 
         public MainViewModel(FriendModel friend)
         {
@@ -152,12 +170,13 @@ namespace FrontendApp.ViewModels
             ConnectCommand = new Command(async () => await Connect());
             DisconnectCommand = new Command(async () => await Disconnect());
             SigninCommand = new Command(async () => await Singin());
-
+            PickImageCommand = new Command(async () => await PickImage());
+            AudioRecordComand = new Command(async () => await AudioRecord());
             IsConnected = false;
 
             hubConnection = new HubConnectionBuilder()
-         .WithUrl($"http://192.168.1.8:5000/ChatHub")
-         .Build();
+             .WithUrl($"http://192.168.1.8:5000/ChatHub")
+             .Build();
 
             hubConnection.On<List<MessageModel>>("ReceiveOldMessage", (chatmessages) =>
             {
@@ -178,10 +197,13 @@ namespace FrontendApp.ViewModels
                         DateRead = ms.DateRead,
                         AttachedFiles = ms.AttachedFiles,
                         ImgURLFromUser = ms.ImgURLFromUser,
-                        ImgURLToUser = ms.ImgURLToUser
-                    });
+                        ImgURLToUser = ms.ImgURLToUser,
+                        checkAttachFile = String.IsNullOrEmpty(ms.AttachedFiles) ? false: (ms.AttachedFiles.Contains("tutuanle/image/upload") ? true: false),
+                        checkAudioFile = String.IsNullOrEmpty(ms.AttachedFiles) ? false : (ms.AttachedFiles.Contains("tutuanle/record/upload") ? true : false),
+                        AttachFilesAudio = ms.AttachedFiles
+                    }); ;
                 }
-                //config.ScrollToEnd = true;
+                MessagingCenter.Send<MainViewModel>(this, "ScrollToEnd");
             });
 
 
@@ -211,13 +233,64 @@ namespace FrontendApp.ViewModels
                     DateRead = ms.DateRead,
                     AttachedFiles = ms.AttachedFiles,
                     ImgURLFromUser = ms.ImgURLFromUser,
-                    ImgURLToUser = ms.ImgURLToUser
+                    ImgURLToUser = ms.ImgURLToUser,
+                    checkAttachFile = String.IsNullOrEmpty(ms.AttachedFiles) ? false : (ms.AttachedFiles.Contains("tutuanle/image/upload") ? true : false),
+                    checkAudioFile = String.IsNullOrEmpty(ms.AttachedFiles) ? false : (ms.AttachedFiles.Contains("tutuanle/record/upload") ? true : false),
+                    AttachFilesAudio = ms.AttachedFiles
                 });
-                //config.ScrollToEnd = true;
+                MessagingCenter.Send<MainViewModel>(this, "ScrollToEnd");
             });
 
 
             _ = Connect();
+        }
+
+        async Task AudioRecord()
+        {
+
+
+            var status = await Permissions.RequestAsync<Permissions.Microphone>();
+
+            if (status != PermissionStatus.Granted)
+                return;
+
+            if (!audioRecorderService.IsRecording)
+            {
+                await audioRecorderService.StartRecording();
+            }
+            else
+            {
+                await audioRecorderService.StopRecording();
+                AudioRecordFileUrl = "https://res.cloudinary.com/uit-information/video/upload/v1641027785/tutuanle/record/upload/" + "record" + Messages[Messages.Count -1].messsageId.ToString();
+                audioPlayer.Play(audioRecorderService.GetAudioFilePath());
+                var content = new MultipartFormDataContent();
+                content.Add(new StreamContent(audioRecorderService.GetAudioFileStream()), "file", "record" + Messages[Messages.Count -1].messsageId.ToString());
+                var httpClient = new HttpClient();
+                var response = await httpClient.PostAsync("http://192.168.1.8:5000/api/message/video", content);
+                string json = response.Content.ToString();
+            }
+        }
+
+
+        async Task PickImage()
+        {
+            var pickImage = await FilePicker.PickAsync(new PickOptions()
+            {
+                FileTypes = FilePickerFileType.Images,
+                PickerTitle = "Pick an Image"
+            });
+
+            if (pickImage != null)
+            {
+                var stream = await pickImage.OpenReadAsync();
+                var image = ImageSource.FromStream(() => stream);
+                var content = new MultipartFormDataContent();
+                content.Add(new StreamContent(stream), "file", pickImage.FileName);
+                var httpClient = new HttpClient();
+                var response = await httpClient.PostAsync("http://192.168.1.8:5000/api/message/image", content);
+                string urlImage = "https://res.cloudinary.com/uit-information/image/upload/v1640925576/tutuanle/image/upload/" + pickImage.FileName;
+                _ = SendMessage(FriendModelS.UserId, "Send attachedFiles Photo.", FriendModelS.FriendKey, urlImage);
+            }
         }
 
         async Task Singin()
@@ -228,21 +301,26 @@ namespace FrontendApp.ViewModels
 
         async Task Connect()
         {
-            config.ScrollToEnd = false;
             await hubConnection.StartAsync();
-            //await hubConnection.InvokeAsync("JoinChat", FriendModelS);
-            string test = FriendModelS.Name;
             await hubConnection.InvokeAsync("ReceiveOldMessage", FriendModelS);
 
             IsConnected = true;
         }
 
-        async Task SendMessage(int userId, string message, string friendKey)
+        async Task SendMessage(int userId, string message, string friendKey, string AttachedFiles = null)
         {
-            config.ScrollToEnd = true;
-            await hubConnection.InvokeAsync("SendMessage", userId, message, friendKey);
-            //await config.homeViewModel.UpdateFriend(config.UserName);
-            
+            if (!String.IsNullOrEmpty(AudioRecordFileUrl))
+            {
+                await hubConnection.InvokeAsync("SendMessage", userId, message, friendKey, AudioRecordFileUrl);
+                AudioRecordFileUrl = null;
+            }
+            else
+            {
+                await hubConnection.InvokeAsync("SendMessage", userId, message, friendKey, AttachedFiles);
+                
+            }
+
+            MessagingCenter.Send<MainViewModel>(this, "ScrollToEnd");
         }
 
         async Task Disconnect()

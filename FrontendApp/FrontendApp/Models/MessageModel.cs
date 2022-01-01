@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace FrontendApp.Models
 {
@@ -20,5 +21,9 @@ namespace FrontendApp.Models
         public string AttachedFiles { get; set; }
         public string ImgURLFromUser { get; set; }
         public string ImgURLToUser { get; set; }
+        public ImageSource image { get; set; }
+        public bool checkAttachFile { get; set; }
+        public bool checkAudioFile { get; set; }
+        public string AttachFilesAudio { get; set; }
     }
 }

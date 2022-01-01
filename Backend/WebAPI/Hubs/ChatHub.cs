@@ -25,7 +25,7 @@ namespace WebAPI.Hubs
             await Clients.All.SendAsync("LeaveChat", user);
         }
 
-        public async Task SendMessage(int userId, string message, string friendKey)
+        public async Task SendMessage(int userId, string message, string friendKey, string AttachedFiles = null)
         {
 
             var friend =  messengeChat.Friends.Where(c => c.FriendKey == friendKey && c.UserIdfriend != userId).SingleOrDefault();
@@ -36,7 +36,8 @@ namespace WebAPI.Hubs
                 DateRead = null,
                 Content = message,
                 ToUserId = friend.UserIdfriend,
-                FriendId = friend.FriendKey
+                FriendId = friend.FriendKey,
+                AttachedFiles = AttachedFiles
             };
             messengeChat.Add(ms);
             messengeChat.SaveChanges();
@@ -44,7 +45,7 @@ namespace WebAPI.Hubs
 
             MessageModel messageModel = new MessageModel()
             {
-                messsageId = 1,
+                messsageId = messengeChat.Messagings.Count(),
                 fromUserId = userId,
                 toUserId = (int)ms.ToUserId,
                 NameUser = (from u in messengeChat.Users
@@ -83,7 +84,7 @@ namespace WebAPI.Hubs
             {
                 msModel.Add(new MessageModel()
                 {
-                    messsageId = ms.MessageId,
+                    messsageId = messengeChat.Messagings.Count(),
                     fromUserId = (int)ms.FromUserId,
                     toUserId = (int)ms.ToUserId,
                     NameUser= (from u in messengeChat.Users
