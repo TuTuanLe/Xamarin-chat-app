@@ -1,6 +1,7 @@
 ﻿using FrontendApp.Helpers;
 using FrontendApp.Models;
 using FrontendApp.ViewModels;
+using FrontendApp.Views;
 using Plugin.AudioRecorder;
 using System;
 using System.Collections.Generic;
@@ -87,7 +88,7 @@ namespace FrontendApp
             }
             else
             {
-                recordAudio.Source = ImageSource.FromFile("record50.png");
+                recordAudio.Source = ImageSource.FromFile("icons8microphone90.png");
                 FrameRecord.BackgroundColor = Color.White;
                 checkedTimeSpan = false;
                 checkedTwoClick = 1;
@@ -119,6 +120,13 @@ namespace FrontendApp
                 viewCell.View.BackgroundColor = Color.White;
 
             }
+        }
+
+      
+
+        private async void ImageButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new InComeCallPage(config.friendModel));
         }
     }
 }

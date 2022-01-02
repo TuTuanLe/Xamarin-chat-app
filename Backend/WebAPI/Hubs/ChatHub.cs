@@ -68,7 +68,7 @@ namespace WebAPI.Hubs
                                 where u.UserId == ms.ToUserId
                                 select u.ImgURL).SingleOrDefault(),
             };
-            await Groups.AddToGroupAsync(Context.ConnectionId, friendKey);
+            
             await Clients.Group(friendKey).SendAsync("ReceiveMessage", messageModel);
            
         }
@@ -106,15 +106,14 @@ namespace WebAPI.Hubs
                     ImgURLToUser = (from u in messengeChat.Users
                                       where u.UserId == ms.ToUserId
                                       select u.ImgURL).SingleOrDefault(),
-
                 });
             }
-
+            await Groups.AddToGroupAsync(Context.ConnectionId, friend.FriendKey);
             await Clients.Caller.SendAsync("ReceiveOldMessage", msModel.ToList());
 
         }
 
-        public async Task SeenFriend(FriendModel friendModel)
+        public void SeenFriend(FriendModel friendModel)
         {
             var fm = friendModel;
             if (friendModel.IdMessageNew.Count != 0)
@@ -128,7 +127,7 @@ namespace WebAPI.Hubs
                     query.DateRead = DateTime.Now;
                     messengeChat.SaveChanges();
                 }
-                
+
             }
             //fm.DateSend = DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture);
             //fm.CountUnRead = 0;
@@ -155,7 +154,7 @@ namespace WebAPI.Hubs
                               //where u.UserId == userId
                                select new FriendModel
                               {
-                                  FriendId = f.FriendId,
+                                  FriendId = (int)f.UserIdfriend,
                                   UserId = u.UserId,
                                   status = (from us in messengeChat.Users 
                                             where us.UserId == f.UserIdfriend
@@ -198,9 +197,18 @@ namespace WebAPI.Hubs
                                                 ).ToList().Count == 0 ? "#5B5A5A" : "#000000",
                                });
 
-            await Groups.AddToGroupAsync(Context.ConnectionId,"123"  );
+            await Groups.AddToGroupAsync(Context.ConnectionId,"123");
 
             await Clients.Group("123").SendAsync("GetFriend", modelFriend.OrderByDescending(x => x.sortDate));
         }
+
+
+        public async Task CallFriendAsync(int userID, string friendKey)
+        {
+            await Clients.Group(friendKey).SendAsync("ReceivePrivateVideoCall", userID, friendKey);
+        }
+
+
+
     }
 }

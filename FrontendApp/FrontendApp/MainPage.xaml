@@ -82,7 +82,7 @@
                 HeightRequest="40"
                 Padding="0"
                 IsClippedToBounds="True">
-                <Image Source="call50" 
+                <Image Source="icons8call100except" 
                     HorizontalOptions="Center"
                     WidthRequest="20" HeightRequest="20"
                     VerticalOptions="Center"
@@ -98,11 +98,13 @@
                 HeightRequest="40"
                 Padding="0"
                 IsClippedToBounds="True">
-                <Image Source="videocall" 
+                <ImageButton 
+                    Source="icons8videocall96" 
                     HorizontalOptions="Center"
                     WidthRequest="20" HeightRequest="20"
                     VerticalOptions="Center"
                     Aspect="AspectFill"
+                    Clicked="ImageButton_Clicked"
             />
             </Frame>
             <Frame 
@@ -114,7 +116,7 @@
                 HeightRequest="40"
                 Padding="0"
                 IsClippedToBounds="True">
-                <Image Source="info" 
+                <Image Source="info64" 
                     HorizontalOptions="Center"
                     WidthRequest="20" HeightRequest="20"
                     VerticalOptions="Center"
@@ -231,7 +233,9 @@
                                             Text="{Binding Message}"
                                             TextColor="#696f7f"
                                             VerticalOptions="FillAndExpand" />
-                                        <!--<Image IsVisible="{Binding checkAttachFile}" Source="{Binding AttachedFiles}" MinimumHeightRequest="10" Aspect="AspectFill" ></Image>-->
+                                        <ImageButton  CornerRadius="10" IsVisible="{Binding checkAttachFile}" Source="{Binding AttachedFiles}" MinimumHeightRequest="10"  ></ImageButton>
+
+                                        <Image IsVisible="{Binding checkAudioFile}"  BackgroundColor="Transparent" Source="audiowave100"  HeightRequest="22"  VerticalOptions="EndAndExpand"></Image>
                                     </Grid>
                                 </Grid>
 
@@ -258,7 +262,7 @@
                                         HorizontalOptions="Start"
                                         VerticalOptions="FillAndExpand">
                                         <BoxView
-                                            BackgroundColor="#19CAB5"
+                                            BackgroundColor="#1D9FE4"
                                               CornerRadius="20"
                                             HorizontalOptions="FillAndExpand" />
                                         <Label
@@ -267,7 +271,7 @@
                                             Text="{Binding Message}"
                                             TextColor="White"
                                             VerticalOptions="FillAndExpand" />
-                                        <Image IsVisible="{Binding checkAttachFile}" Source="{Binding AttachedFiles}" MinimumHeightRequest="10" ></Image>
+                                        <ImageButton  CornerRadius="10" IsVisible="{Binding checkAttachFile}" Source="{Binding AttachedFiles}" MinimumHeightRequest="10" ></ImageButton>
 
                                         <Image IsVisible="{Binding checkAudioFile}"  BackgroundColor="Transparent" Source="audiowave100"  HeightRequest="22"  VerticalOptions="EndAndExpand"></Image>
                                     </Grid>
@@ -281,9 +285,9 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
-        
-        
+
+
+
         <Grid
             BackgroundColor="Transparent"
             Grid.Row="2"
@@ -301,7 +305,7 @@
                 Margin="10"
                 Grid.Column="0"
                 
-                Source="camera24"
+                Source="icons8camera96"
                 WidthRequest="25"
                 HeightRequest="25"
                 BackgroundColor="Transparent"
@@ -311,7 +315,7 @@
                 Margin="10"
                 Grid.Column="1"
                 Command="{Binding PickImageCommand}"
-                Source="image24"
+                Source="icons8image90"
                 WidthRequest="25"
                 HeightRequest="25"
                 BackgroundColor="Transparent"
@@ -323,17 +327,19 @@
                 Command="{Binding AudioRecordComand}"
                 Clicked="recordAudio_Clicked"
                 
-                Source="record50"
-                WidthRequest="25"
-                HeightRequest="25"
+                Source="icons8microphone90"
+                WidthRequest="30"
+                HeightRequest="30"
                 BackgroundColor="Transparent"
                  />
             <Frame
                 x:Name="FrameRecord"
                 Grid.Column="3"
-                Margin="5,5,0,10"
+                Margin="5,7,0,7"
                 CornerRadius="20"
                 Padding="0"
+                HasShadow="False"
+                BackgroundColor="#F2F3F4"
                 >
                 <Image x:Name="gifAnimation" IsVisible="False" Source="YdBO.gif" 
                     HorizontalOptions="CenterAndExpand"
@@ -344,16 +350,30 @@
                        
             />
             </Frame>
-            <Entry
+            <Grid Grid.Column="3" ColumnDefinitions="5*,*" VerticalOptions="CenterAndExpand">
+                <Entry
                 x:Name="entryChat"
-                Grid.Column="3"
+                Grid.Column="0"
                 Margin="25,0,25,0"
-                Placeholder="Message .."
+                Placeholder="Aa"
                 PlaceholderColor="#969daf"
                 BackgroundColor="Transparent"
+                VerticalOptions="CenterAndExpand"
                 Text="{Binding Message}"
-        
                 TextColor="Black" />
+
+                <ImageButton
+        
+                Grid.Column="1"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="CenterAndExpand"
+                Source="icons8shockeremoji96"
+                WidthRequest="25"
+                HeightRequest="25"
+                BackgroundColor="Transparent"
+                 />
+            </Grid>
+                
             <ImageButton
                 x:Name="sendMessage"
                 Margin="10"
@@ -365,12 +385,6 @@
                 HeightRequest="30"
                 BackgroundColor="Transparent"
                  />
-            
-            
         </Grid>
-
-
-        
-
     </Grid>
 </ContentPage>

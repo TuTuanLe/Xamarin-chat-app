@@ -196,8 +196,7 @@
                                     WidthRequest="20"
                                     Padding="0"
                                     IsClippedToBounds="True">
-                                    <Label  Grid.Column="2" Grid.Row="1" Text="{Binding CountUnRead}"  TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"></Label>
-
+                                    <Label Grid.Column="2" Grid.Row="1" Text="{Binding CountUnRead}"  TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"></Label>
                                 </Frame>
                             </Grid>
                         </ViewCell>

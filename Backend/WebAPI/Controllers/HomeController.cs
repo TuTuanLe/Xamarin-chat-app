@@ -33,14 +33,14 @@ namespace WebAPI.Controllers
 
         [HttpPost]
         [Route("image")]
-        public async Task<ActionResult> PostImage()
+        public ActionResult PostImage()
         {
             Account account = new Account(
               "uit-information",
               "758822263555998",
               "aW_PQSGalL-ITWJUaux-cos-JEA");
             Cloudinary _cloudinary = new Cloudinary(account);
-           
+
 
 
             try
@@ -51,15 +51,15 @@ namespace WebAPI.Controllers
                     foreach (var file in httpRequest.Form.Files)
                     {
 
-                            var uploadParams = new ImageUploadParams()
-                            {
-                                File = new FileDescription(file.FileName, file.OpenReadStream()),
-                                PublicId ="tutuanle/image/upload/"+ file.FileName.Split('.')[0]
+                        var uploadParams = new ImageUploadParams()
+                        {
+                            File = new FileDescription(file.FileName, file.OpenReadStream()),
+                            PublicId = "tutuanle/image/upload/" + file.FileName.Split('.')[0]
 
-                            };
+                        };
 
-                            var uploadResult =  _cloudinary.Upload(uploadParams);
-                     
+                        var uploadResult = _cloudinary.Upload(uploadParams);
+
                         return Ok(uploadResult.Url);
                     }
                 }
@@ -75,7 +75,7 @@ namespace WebAPI.Controllers
 
         [HttpPost]
         [Route("video")]
-        public async Task<ActionResult> PostVideo()
+        public ActionResult PostVideo()
         {
             Account account = new Account(
               "uit-information",
@@ -174,7 +174,7 @@ namespace WebAPI.Controllers
         [HttpGet]
         public IActionResult GetFriend()
         {
-            int userId = 1;
+           
             //var test = from u in messengeChat.Users
             //           select u.Active== 1? true: false;
             //return Ok(test);
@@ -195,6 +195,60 @@ namespace WebAPI.Controllers
             return Ok(messengeChat.Messagings.Count());
         }
 
+        [HttpGet("getFriend/{userId}")]
+        public IActionResult GetFriend(int userId)
+        {
+            var modelFriend = (from f in messengeChat.Friends
+                               join u in messengeChat.Users
+                               on f.UserId equals u.UserId
+                               //where u.UserId == userId
+                               select new FriendModel
+                               {
+                                   FriendId = (int)f.UserIdfriend,
+                                   UserId = u.UserId,
+                                   status = (from us in messengeChat.Users
+                                             where us.UserId == f.UserIdfriend
+                                             select us.Active
+                                            ).SingleOrDefault() == 1 ? true : false,
+                                   FriendKey = f.FriendKey,
+                                   Name = (from us in messengeChat.Users
+                                           where us.UserId == f.UserIdfriend
+                                           select us.FirstName + " " + us.LastName).SingleOrDefault(),
+                                   ImgURL = (from us in messengeChat.Users
+                                             where us.UserId == f.UserIdfriend
+                                             select us.ImgURL).SingleOrDefault(),
+                                   DateSend = (from ms in messengeChat.Messagings
+                                               where ms.FriendId == f.FriendKey
+                                               orderby ms.DateSent descending
+                                               select ms.DateSent
+                                                ).SingleOrDefault().ToString("H:mm", CultureInfo.InvariantCulture),
+                                   CountUnRead = (from ms in messengeChat.Messagings
+                                                  where ms.FriendId == f.FriendKey && ms.DateRead == null && ms.FromUserId != u.UserId
+                                                  select ms
+                                                ).ToList().Count,
+                                   IdMessageNew = (from ms in messengeChat.Messagings
+                                                   where ms.FriendId == f.FriendKey && ms.DateRead == null && ms.FromUserId != u.UserId
+                                                   select ms.MessageId
+                                                ).ToList(),
+                                   MessageNew = (from ms in messengeChat.Messagings
+                                                 where ms.FriendId == f.FriendKey
+                                                 orderby ms.DateSent descending
+                                                 select ms.Content
+                                                ).SingleOrDefault(),
+
+                                   sortDate = (from ms in messengeChat.Messagings
+                                               where ms.FriendId == f.FriendKey
+                                               orderby ms.DateSent descending
+                                               select ms.DateSent
+                                                ).SingleOrDefault(),
+                                   ColorSeen = (from ms in messengeChat.Messagings
+                                                where ms.FriendId == f.FriendKey && ms.DateRead == null && ms.FromUserId != u.UserId
+                                                select ms
+                                                ).ToList().Count == 0 ? "#5B5A5A" : "#000000",
+                               });
+
+            return Ok(modelFriend);
+        }
 
     }
 }
