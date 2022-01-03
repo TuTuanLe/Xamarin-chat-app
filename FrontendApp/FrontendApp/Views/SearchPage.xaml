@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:custom="clr-namespace:FrontendApp.Customs"
              x:Class="FrontendApp.Views.SearchPage"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="White"
@@ -9,8 +10,8 @@
         <StackLayout>
             <Frame Padding="0">
             <Grid RowDefinitions="*" ColumnDefinitions="auto, *" Padding="5">
-                <Image Grid.Row="0" Grid.Column="0"  Source="back48" WidthRequest="35"></Image>
-                <Entry Grid.Row="0" Grid.Column="1" Placeholder="Search..." ></Entry>
+                <Image Grid.Row="0" Grid.Column="0"  Source="back48" WidthRequest="25" ></Image>
+                <custom:EntryStyle Grid.Row="0" Grid.Column="1" Placeholder="Search..." ></custom:EntryStyle>
             </Grid>
             </Frame>
         </StackLayout>

@@ -18,6 +18,35 @@ namespace FrontendApp.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private double _ProgressValue = 0;
+        public double ProgressValue
+        {
+            get
+            {
+                return _ProgressValue;
+            }
+            set
+            {
+                _ProgressValue = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _checkSendProgress = false;
+
+        public bool CheckSendProgress
+        {
+            get
+            {
+                return _checkSendProgress;
+            }
+            set
+            {
+                _checkSendProgress = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string _name;
         private string _message;
         private ObservableCollection<MessageModel> _messages;
@@ -52,7 +81,6 @@ namespace FrontendApp.ViewModels
             }
         }
 
-
         public string Name
         {
             get
@@ -65,7 +93,6 @@ namespace FrontendApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
 
         public string Message
         {
@@ -261,19 +288,23 @@ namespace FrontendApp.ViewModels
             else
             {
                 await audioRecorderService.StopRecording();
+                
                 AudioRecordFileUrl = "https://res.cloudinary.com/uit-information/video/upload/v1641027785/tutuanle/record/upload/" + "record" + Messages[Messages.Count -1].messsageId.ToString();
                 audioPlayer.Play(audioRecorderService.GetAudioFilePath());
+                CheckSendProgress = true;
+                checkSendAttachFile();
                 var content = new MultipartFormDataContent();
                 content.Add(new StreamContent(audioRecorderService.GetAudioFileStream()), "file", "record" + Messages[Messages.Count -1].messsageId.ToString());
                 var httpClient = new HttpClient();
                 var response = await httpClient.PostAsync("http://192.168.1.8:5000/api/message/video", content);
-                string json = response.Content.ToString();
+                CheckSendProgress = false;
             }
         }
 
 
         async Task PickImage()
         {
+
             var pickImage = await FilePicker.PickAsync(new PickOptions()
             {
                 FileTypes = FilePickerFileType.Images,
@@ -282,15 +313,34 @@ namespace FrontendApp.ViewModels
 
             if (pickImage != null)
             {
+                CheckSendProgress = true;
                 var stream = await pickImage.OpenReadAsync();
                 var image = ImageSource.FromStream(() => stream);
                 var content = new MultipartFormDataContent();
                 content.Add(new StreamContent(stream), "file", pickImage.FileName);
-                var httpClient = new HttpClient();
-                var response = await httpClient.PostAsync("http://192.168.1.8:5000/api/message/image", content);
+
+                checkSendAttachFile();
+
                 string urlImage = "https://res.cloudinary.com/uit-information/image/upload/v1640925576/tutuanle/image/upload/" + pickImage.FileName;
                 _ = SendMessage(FriendModelS.UserId, "Send attachedFiles Photo.", FriendModelS.FriendKey, urlImage);
+
+                var httpClient = new HttpClient();
+                var response = await httpClient.PostAsync("http://192.168.1.8:5000/api/message/image", content);
+                CheckSendProgress = false;
+               
             }
+        }
+
+        public void checkSendAttachFile()
+        {
+            Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+            {
+                if ((int)ProgressValue <= 1)
+                    ProgressValue += 0.1;
+                if (CheckSendProgress == false)
+                    ProgressValue = 0;
+                return CheckSendProgress;
+            });
         }
 
         async Task Singin()
@@ -311,13 +361,15 @@ namespace FrontendApp.ViewModels
         {
             if (!String.IsNullOrEmpty(AudioRecordFileUrl))
             {
+                
                 await hubConnection.InvokeAsync("SendMessage", userId, message, friendKey, AudioRecordFileUrl);
                 AudioRecordFileUrl = null;
+            
             }
             else
             {
-                await hubConnection.InvokeAsync("SendMessage", userId, message, friendKey, AttachedFiles);
-                
+                if(message != "")
+                    await hubConnection.InvokeAsync("SendMessage", userId, message, friendKey, AttachedFiles);  
             }
 
             MessagingCenter.Send<MainViewModel>(this, "ScrollToEnd");

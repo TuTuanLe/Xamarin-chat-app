@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FrontendApp.Views.CreateGroupPage"
              NavigationPage.HasNavigationBar="False"
+             xmlns:customs="clr-namespace:FrontendApp.Customs"
              >
     <ContentPage.Content>
         <StackLayout>
@@ -34,7 +35,7 @@
                         FontAttributes="Bold"
                         FontSize="Medium"
                         Text="Next"
-                        TextColor="Blue"
+                        TextColor="#4083A6"
                         />
                 </Grid>
                 
@@ -52,11 +53,9 @@
                                         >
                         </Image>
 
-                        <Label Grid.Column="1"  Text="Search..." FontSize="15"   HorizontalTextAlignment="Start" VerticalTextAlignment="Center">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer x:Name="TappedSearch"   />
-                            </Label.GestureRecognizers>
-                        </Label>
+                        <customs:EntryStyle  Grid.Column="1"  Placeholder="Search..." FontSize="15"  HorizontalTextAlignment="Start" VerticalTextAlignment="Center" />
+
+
                         <Frame
                                         Grid.Column="2"
                                         Padding="0"

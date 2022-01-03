@@ -68,19 +68,19 @@ namespace FrontendApp
                 FrameRecord.BackgroundColor = Color.FromHex("#1C76D2");
                 gifAnimation.IsVisible = true;
                 entryChat.HorizontalTextAlignment = TextAlignment.Center;
-                int seconds = 0;
+                int second = 0;
 
                 Device.StartTimer(TimeSpan.FromSeconds(1), () =>
                 {
-                    seconds++;
+                    second++;
 
                     if (seconds.ToString().Length == 1)
                     {
-                        entryChat.Text = "recording 0:" + seconds.ToString();
+                        entryChat.Text = "recording 0:" + second.ToString();
                     }
                     else
                     {
-                        entryChat.Text = "recording 0:" + seconds.ToString();
+                        entryChat.Text = "recording 0:" + second.ToString();
                     }
                     return checkedTimeSpan;
                 });
@@ -89,7 +89,7 @@ namespace FrontendApp
             else
             {
                 recordAudio.Source = ImageSource.FromFile("icons8microphone90.png");
-                FrameRecord.BackgroundColor = Color.White;
+                FrameRecord.BackgroundColor = Color.FromHex("#F2F3F4");
                 checkedTimeSpan = false;
                 checkedTwoClick = 1;
                 gifAnimation.IsVisible = false;
@@ -101,16 +101,7 @@ namespace FrontendApp
         public readonly AudioPlayer audioPlayer = new AudioPlayer();
 
 
-        private void lstMessage_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            var message = (MessageModel)lstMessage.SelectedItem;
-            if(message.checkAudioFile == true)
-            {
-                audioPlayer.Play(message.AttachedFiles+".wav");
-            }
-           
-
-        }
+      
 
         private void ViewCell_Tapped(object sender, EventArgs e)
         {
@@ -128,5 +119,73 @@ namespace FrontendApp
         {
             await Navigation.PushAsync(new InComeCallPage(config.friendModel));
         }
+
+
+        private AudioPlayer player;
+        private Image playImage;
+        private bool finishedPlay = true;
+        private int seconds = 0;
+
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            var layout = (BindableObject)sender;
+            var item = (MessageModel)layout.BindingContext;
+            var image = playImage = (Image)sender;
+            var messageold = item.Message;
+            if (finishedPlay)
+            {
+                finishedPlay = false;
+                player = new AudioPlayer();
+                player.FinishedPlaying += Player_FinishedPlaying;
+
+                image.Source = "icons8pause90.png";
+                await PlayAudio(item.AttachFilesAudio);
+
+                Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+                {
+                    
+                    if(seconds != 0)
+                        if (seconds.ToString().Length == 1)
+                        {
+                            item.Message = "recording 0:" + seconds.ToString();
+                        }
+                        else
+                        {
+                            item.Message = "recording 0:" + seconds.ToString();
+                        }
+                    seconds++;
+
+                    return !finishedPlay;
+                });
+            }
+            else
+            {
+                playImage.Source = "icons8play100.png";
+                finishedPlay = true;
+                player.Pause();
+            }
+        }
+
+        private void Player_FinishedPlaying(object sender, EventArgs e)
+        {
+            playImage.Source = "icons8play100.png";
+            finishedPlay = true;
+            seconds = 0;
+        }
+
+        public Task PlayAudio(string audioPath)
+        {
+            try
+            {
+                player.Play(audioPath);
+               
+            }
+            catch (Exception)
+            {
+            }
+            return Task.CompletedTask;
+        }
+
+     
     }
 }

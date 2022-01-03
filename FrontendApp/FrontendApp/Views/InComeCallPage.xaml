@@ -48,14 +48,14 @@
                 <Frame Padding="0" CornerRadius="15">
                      <StackLayout Orientation="Vertical"  BackgroundColor="Transparent" >
 
-                        <Label Text="Please rate the quatity of your call" HorizontalTextAlignment="Center" Padding="100, 30, 100,20" FontSize="Large" TextColor="#4E4E4E"></Label>
+                        <Label Text="Please rate the quatity of your call" HorizontalTextAlignment="Center" Padding="80, 30, 80,20" FontSize="Large" TextColor="#4E4E4E"></Label>
 
                         <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="5" Spacing="15">
-                            <ImageButton x:Name="star1" Source="icons8tar96NoTapped" WidthRequest="20"></ImageButton>
-                            <ImageButton x:Name="star2" Source="icons8tar96NoTapped" WidthRequest="20"></ImageButton>
-                            <ImageButton x:Name="star3" Source="icons8tar96NoTapped" WidthRequest="20"></ImageButton>
-                            <ImageButton x:Name="star4" Source="icons8tar96NoTapped" WidthRequest="20"></ImageButton>
-                            <ImageButton x:Name="star5" Source="icons8tar96NoTapped" WidthRequest="20"></ImageButton>
+                            <ImageButton x:Name="star1" Source="icons8tar96NoTapped" WidthRequest="25" BackgroundColor="Transparent"></ImageButton>
+                            <ImageButton x:Name="star2" Source="icons8tar96NoTapped" WidthRequest="25" BackgroundColor="Transparent"></ImageButton>
+                            <ImageButton x:Name="star3" Source="icons8tar96NoTapped" WidthRequest="25" BackgroundColor="Transparent"></ImageButton>
+                            <ImageButton x:Name="star4" Source="icons8tar96NoTapped" WidthRequest="25" BackgroundColor="Transparent"></ImageButton>
+                            <ImageButton x:Name="star5" Source="icons8tar96NoTapped" WidthRequest="25" BackgroundColor="Transparent"></ImageButton>
                         </StackLayout>
                     
                         <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Padding="15">

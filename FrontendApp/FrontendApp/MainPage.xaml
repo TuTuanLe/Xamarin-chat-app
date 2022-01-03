@@ -5,6 +5,7 @@
              x:Class="FrontendApp.MainPage"    
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#FFFF"
+             xmlns:custom ="clr-namespace:FrontendApp.Customs"
              >
 
     <ContentPage.Resources>
@@ -94,7 +95,7 @@
                 Grid.Column="4" 
                 Grid.RowSpan="2"
                 CornerRadius="20" 
-                 WidthRequest="40"
+                WidthRequest="40"
                 HeightRequest="40"
                 Padding="0"
                 IsClippedToBounds="True">
@@ -125,8 +126,8 @@
             </Frame>
 
         </Grid>
-        
-       
+
+
         <!--<Label
             Margin="10"
             FontSize="20"
@@ -147,8 +148,7 @@
             SeparatorVisibility="None"
             VerticalOptions="End"
             VerticalScrollBarVisibility="Always"
-            
-            ItemSelected="lstMessage_ItemSelected"
+
             >
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -233,9 +233,25 @@
                                             Text="{Binding Message}"
                                             TextColor="#696f7f"
                                             VerticalOptions="FillAndExpand" />
-                                        <ImageButton  CornerRadius="10" IsVisible="{Binding checkAttachFile}" Source="{Binding AttachedFiles}" MinimumHeightRequest="10"  ></ImageButton>
+                                        <ImageButton BackgroundColor="Transparent"  CornerRadius="10" IsVisible="{Binding checkAttachFile}" Source="{Binding AttachedFiles}" MinimumHeightRequest="10"  ></ImageButton>
 
-                                        <Image IsVisible="{Binding checkAudioFile}"  BackgroundColor="Transparent" Source="audiowave100"  HeightRequest="22"  VerticalOptions="EndAndExpand"></Image>
+                                        <Grid IsVisible="{Binding checkAudioFile}" ColumnDefinitions="auto" WidthRequest="120">
+
+                                            <Image 
+                                                Grid.Column="0"
+                                                Margin="6"
+                                                IsVisible="{Binding checkAudioFile}"
+                                                BackgroundColor="Transparent"
+                                                Source="icons8play100"  
+                                                HeightRequest="25"
+                                                WidthRequest="25"
+                                                VerticalOptions="CenterAndExpand"
+                                            >
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
                                     </Grid>
                                 </Grid>
 
@@ -253,7 +269,7 @@
                                         HorizontalOptions="Start"
                                         Text="{Binding NameUser}"
                                         TextColor="#969daf" />
-                                    
+
                                     <Grid
                                         
                                         Grid.Row="1"
@@ -263,7 +279,7 @@
                                         VerticalOptions="FillAndExpand">
                                         <BoxView
                                             BackgroundColor="#1D9FE4"
-                                              CornerRadius="20"
+                                            CornerRadius="20"
                                             HorizontalOptions="FillAndExpand" />
                                         <Label
                                             Margin="10"
@@ -271,12 +287,30 @@
                                             Text="{Binding Message}"
                                             TextColor="White"
                                             VerticalOptions="FillAndExpand" />
-                                        <ImageButton  CornerRadius="10" IsVisible="{Binding checkAttachFile}" Source="{Binding AttachedFiles}" MinimumHeightRequest="10" ></ImageButton>
+                                        <ImageButton BackgroundColor="Transparent" CornerRadius="10" IsVisible="{Binding checkAttachFile}" Source="{Binding AttachedFiles}" MinimumHeightRequest="10" ></ImageButton>
 
-                                        <Image IsVisible="{Binding checkAudioFile}"  BackgroundColor="Transparent" Source="audiowave100"  HeightRequest="22"  VerticalOptions="EndAndExpand"></Image>
+                                        <Grid IsVisible="{Binding checkAudioFile}" ColumnDefinitions="auto" WidthRequest="120">
+
+                                            <Image 
+                                                Grid.Column="0"
+                                                Margin="6"
+                                                IsVisible="{Binding checkAudioFile}"
+                                                BackgroundColor="Transparent"
+                                                Source="icons8play100"  
+                                                HeightRequest="25"
+                                                WidthRequest="25"
+                                                VerticalOptions="CenterAndExpand"
+                                            >
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
+
+
                                     </Grid>
 
-                                   
+
 
                                 </Grid>
                             </Grid>
@@ -285,7 +319,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
 
 
         <Grid
@@ -302,7 +335,7 @@
             </Grid.ColumnDefinitions>
 
             <ImageButton
-                Margin="10"
+                Margin="7"
                 Grid.Column="0"
                 
                 Source="icons8camera96"
@@ -312,7 +345,7 @@
                  />
             <ImageButton
                 x:Name="btnPickImage"
-                Margin="10"
+                Margin="7"
                 Grid.Column="1"
                 Command="{Binding PickImageCommand}"
                 Source="icons8image90"
@@ -322,20 +355,20 @@
                  />
             <ImageButton
                 x:Name="recordAudio"
-                Margin="10"
+                Margin="9"
                 Grid.Column="2"
                 Command="{Binding AudioRecordComand}"
                 Clicked="recordAudio_Clicked"
                 
                 Source="icons8microphone90"
-                WidthRequest="30"
-                HeightRequest="30"
+                WidthRequest="25"
+                HeightRequest="25"
                 BackgroundColor="Transparent"
                  />
             <Frame
                 x:Name="FrameRecord"
                 Grid.Column="3"
-                Margin="5,7,0,7"
+                Margin="0,7,0,7"
                 CornerRadius="20"
                 Padding="0"
                 HasShadow="False"
@@ -351,10 +384,10 @@
             />
             </Frame>
             <Grid Grid.Column="3" ColumnDefinitions="5*,*" VerticalOptions="CenterAndExpand">
-                <Entry
+                <custom:EntryStyle
                 x:Name="entryChat"
                 Grid.Column="0"
-                Margin="25,0,25,0"
+                Margin="10,0,25,0"
                 Placeholder="Aa"
                 PlaceholderColor="#969daf"
                 BackgroundColor="Transparent"
@@ -373,7 +406,7 @@
                 BackgroundColor="Transparent"
                  />
             </Grid>
-                
+
             <ImageButton
                 x:Name="sendMessage"
                 Margin="10"
@@ -386,5 +419,8 @@
                 BackgroundColor="Transparent"
                  />
         </Grid>
+
+        <ProgressBar x:Name="progressbarSend" BackgroundColor="Transparent"  Grid.Row="2" Margin="170,0,170,0" ProgressColor="#1D9FE4" IsVisible="{Binding CheckSendProgress}" Progress="{Binding ProgressValue}" VerticalOptions="Start"/>
+
     </Grid>
 </ContentPage>

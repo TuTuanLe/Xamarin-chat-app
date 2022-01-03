@@ -24,63 +24,49 @@
             <Grid ColumnDefinitions="*,auto,*" Margin="10,0,10,0"  >
                 <Label Grid.Column="0" Text="Story" FontAttributes="Bold" FontSize="20" TextColor="Black"></Label>
                 <Label Grid.Column="2" Text="See all" HorizontalOptions="End" VerticalOptions="CenterAndExpand"></Label>
-                <Frame TranslationY="-90"
-                       TranslationX="150"
+                <Frame
+                    TranslationY="-90"
+                    TranslationX="150"
                     VerticalOptions="FillAndExpand"
-                       HorizontalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
                     Grid.Column="1" 
                     CornerRadius="20" 
                     HasShadow="True"
-                    Padding="5"
-    
+                    Padding="7"
                     IsClippedToBounds="True">
                     <ImageButton     
                         x:Name="search"
                         Source="search"
-                        VerticalOptions="End"
+                   
                         BackgroundColor="White"
-                        HeightRequest="30"
-                        WidthRequest="30"
+                        HeightRequest="20"
+                        WidthRequest="20"
                         Aspect="AspectFit"
                     ></ImageButton>
                 </Frame>
             </Grid>
-            <CarouselView ItemsSource="{Binding Storys}" PeekAreaInsets="120"  HeightRequest="200" Margin="10,0,0,0 ">
-      
+            <CarouselView ItemsSource="{Binding Storys}" PeekAreaInsets="120"  HeightRequest="200" Margin="10,0,0,0"  >
                 <CarouselView.ItemTemplate>
+                    
                     <DataTemplate>
                         <Frame 
                             HeightRequest="200"
-                            WidthRequest="100"
-                            Margin="10"
                             Padding="5"
                             BackgroundColor="Transparent"
                             HasShadow="True"
-                            
                             HorizontalOptions="CenterAndExpand"
-                          
+                            VerticalOptions="CenterAndExpand"
                             >
-                            <Grid >
-                                <StackLayout BackgroundColor="Black">
+                            <Grid RowDefinitions="*">
+                                <StackLayout>
                                     <Image Source="{Binding ImgURl}"
                                            Aspect="AspectFill"
                                            Opacity="0.8"
                                            HeightRequest="200"
-                                           
-                                      ></Image>
+                                     />
                                 </StackLayout>
                                 <StackLayout>
                                     <Label Margin="10" Text="Add Story" TextColor="White" FontSize="12" VerticalOptions="EndAndExpand" HorizontalOptions="Start"></Label>
-                                </StackLayout>
-                                <StackLayout>
-                                    <ImageButton 
-                                        Grid.Column="2"
-                                        Source="camera"
-                                        BackgroundColor="Transparent"
-                                        VerticalOptions="CenterAndExpand"
-                                        HeightRequest="24"
-                                        WidthRequest="24"
-                                    ></ImageButton>
                                 </StackLayout>
                             </Grid>
                         </Frame>
@@ -115,8 +101,8 @@
                                 </Frame>
                                 <Frame 
                                        IsVisible="{Binding status}"
-                                       TranslationX="20"
-                                       TranslationY="20"
+                                       TranslationX="16"
+                                       TranslationY="16"
                                        VerticalOptions="CenterAndExpand"
                                        HorizontalOptions="CenterAndExpand"
                                        CornerRadius="20" 
@@ -146,7 +132,7 @@
                 <Label Grid.Column="1" Text="See all" HorizontalOptions="End" VerticalOptions="CenterAndExpand"></Label>
             </Grid>
                <!--get list friend-->
-            <ListView  x:Name="lstFriends" ItemSelected="lstFriends_ItemSelected" ItemsSource="{Binding Friends}" HeightRequest="200" RowHeight="70" HorizontalOptions="FillAndExpand"   VerticalOptions="CenterAndExpand" BackgroundColor="Transparent">
+            <ListView  x:Name="lstFriends"  IsRefreshing="{Binding IsLoading, Mode=OneWay}"    ItemSelected="lstFriends_ItemSelected" ItemsSource="{Binding Friends}" HeightRequest="200" RowHeight="70" HorizontalOptions="FillAndExpand"   VerticalOptions="CenterAndExpand" BackgroundColor="Transparent">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell Tapped="ViewCell_Tapped">
@@ -166,8 +152,8 @@
                                />
                                 </Frame>
                                 <Frame IsVisible="{Binding status}"
-                                       TranslationX="20"
-                                       TranslationY="20"
+                                       TranslationX="15"
+                                       TranslationY="15"
                                        VerticalOptions="CenterAndExpand"
                                        HorizontalOptions="CenterAndExpand"
                                        Grid.Column="0" 

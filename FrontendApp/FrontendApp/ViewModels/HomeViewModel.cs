@@ -38,7 +38,22 @@ namespace FrontendApp.ViewModels
                 OnPropertyChanged();
             }
         }
-   
+
+        private bool _isLoading = true;
+
+        public bool IsLoading
+        {
+            get
+            {
+                return _isLoading;
+            }
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string Password
         {
             get
@@ -103,6 +118,7 @@ namespace FrontendApp.ViewModels
         public Command UpdateFriendCommand { get; }
         public HomeViewModel(string userID)
         {
+     
             Gmail = userID;
             Storys = new ObservableCollection<Story>();
             Friends = new ObservableCollection<FriendModel>();
@@ -142,16 +158,7 @@ namespace FrontendApp.ViewModels
 
             });
 
-            //hubConnection.On<FriendModel>("SeenFriend",  friend =>
-            //{
-            //    var listFriend = new List<FriendModel>(Friends);
-            //    var index = listFriend.FindIndex(x => x.FriendId == friend.FriendId);
-            //    listFriend.RemoveAt(index);
-            //    listFriend.Add(friend);
-            //    Friends.Clear();
-            //    Friends = new ObservableCollection<FriendModel> (listFriend);
-            //    //await hubConnection.InvokeAsync("GetFriend", Int32.Parse(Gmail));
-            //});
+    
             _ = Connect();
         }
 
@@ -167,6 +174,7 @@ namespace FrontendApp.ViewModels
             await hubConnection.StartAsync();
             await hubConnection.InvokeAsync("GetFriend", Int32.Parse(Gmail));
             IsConnected = true;
+            IsLoading = false;
         }
 
   

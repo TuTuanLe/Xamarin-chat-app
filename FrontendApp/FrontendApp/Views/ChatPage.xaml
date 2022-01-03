@@ -88,29 +88,28 @@
                     <!--search-->
                 <Grid >
                     <Frame Padding="0" CornerRadius="20" Margin="15,10" BackgroundColor="#F6F5F5" HasShadow="False">
-                        <Grid ColumnDefinitions="auto, *, auto" Margin="10,0,10,0" VerticalOptions="CenterAndExpand">
+                        <Grid ColumnDefinitions="auto, *, auto" Margin="7,0,7,0" VerticalOptions="CenterAndExpand" >
                             <Image 
-                                        Grid.Column="0" 
-                                        Source="search" 
-                                        WidthRequest="20" 
-                                        BackgroundColor="Transparent" 
-                                        VerticalOptions="Center"  
-                                        Aspect="AspectFill"
+                                    HeightRequest="20"
+                                    Grid.Column="0" 
+                                    Source="search" 
+                                    WidthRequest="20" 
+                                    BackgroundColor="Transparent" 
+                                    VerticalOptions="CenterAndExpand"  
+                                    Aspect="AspectFill"
                                         >
                             </Image>
 
-                            <Label Grid.Column="1"  Text="Search..." FontSize="15"   HorizontalTextAlignment="Start" VerticalTextAlignment="Center">
+                            <Label Grid.Column="1"  Text="Search..." FontSize="15"  HorizontalTextAlignment="Start" VerticalTextAlignment="Center">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer x:Name="TappedSearch" Tapped="TappedSearch_Tapped"  /> 
                                     </Label.GestureRecognizers>
                             </Label>
                             <Frame
-                                        Grid.Column="2"
-                                        Padding="0"
-                                        Margin="0,10,5,10"
-                                        CornerRadius="10"
-                            
-                                        >
+                                Grid.Column="2"
+                                Padding="0"
+                                Margin="0,7,5,7"
+                                CornerRadius="15" >
                                 <Label Text=" NO READ" FontSize="11" Margin="5" HorizontalOptions="Center" VerticalOptions="Center"></Label>
                             </Frame>
 
@@ -172,8 +171,8 @@
                                    />
                                     </Frame>
                                         <Frame IsVisible="{Binding status}"
-                                           TranslationX="20"
-                                           TranslationY="20"
+                                           TranslationX="15"
+                                           TranslationY="15"
                                            VerticalOptions="CenterAndExpand"
                                            HorizontalOptions="CenterAndExpand"
                                            Grid.Column="0" 
@@ -190,7 +189,9 @@
                                            BackgroundColor="Transparent"
                                    />
                                     </Frame>
-                                        <Label Grid.Column="1" Grid.Row="0" Margin="10,0,0,0" Text="{Binding Name}" TextColor="{Binding ColorSeen}" FontSize="15" FontAttributes="Bold"></Label>
+                                        <Label Grid.Column="1" Grid.Row="0" Margin="10,0,0,0" Text="{Binding Name}" TextColor="{Binding ColorSeen}" FontSize="15" FontAttributes="Bold">
+                                           
+                                        </Label>
                                         <Label IsVisible="true" WidthRequest="200" Grid.Column="1" Grid.Row="1" Margin="10,0,0,0" VerticalOptions="CenterAndExpand" Text="{Binding MessageNew}"  FontAttributes="{Binding FontAttribute}" LineBreakMode="TailTruncation" TextColor="{Binding ColorSeen}"></Label>
                                         <Label Grid.Column="2" Grid.Row="0" Text="{Binding DateSend}"  HorizontalOptions="End" TextColor="{Binding ColorSeen}" ></Label>
                                     <Frame
