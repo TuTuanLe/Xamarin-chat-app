@@ -16,9 +16,15 @@ namespace FrontendApp.Views
     {
         public CreateGroupPage()
         {
-            config.homeViewModel = new HomeViewModel(config.UserName);
-            BindingContext = config.homeViewModel;
+            BindingContext = new CreateGroupViewModel(config.homeViewModel.Friends, Navigation);
+
             InitializeComponent();
         }
+
+        private void BackChatPage_Clicked(object sender, EventArgs e)
+        {
+            //await Navigation.PopAsync();
+        }
+
     }
 }

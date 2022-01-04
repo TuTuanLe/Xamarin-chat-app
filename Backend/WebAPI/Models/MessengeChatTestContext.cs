@@ -52,6 +52,10 @@ namespace WebAPI.Models
                     .HasMaxLength(60)
                     .HasColumnName("nickNameGuest");
 
+                entity.Property(e => e.FriendKey)
+                    .HasMaxLength(250)
+                    .HasColumnName("FriendKey");
+
                 entity.Property(e => e.UserGroupId).HasColumnName("userGroupID");
 
                 entity.HasOne(d => d.AddUser)

@@ -29,18 +29,34 @@ namespace WebAPI.Hubs
         {
 
             var friend =  messengeChat.Friends.Where(c => c.FriendKey == friendKey && c.UserIdfriend != userId).SingleOrDefault();
-            Messaging ms = new Messaging()
+            Messaging ms = new Messaging();
+            if (friend != null)
             {
-                FromUserId = userId,
-                DateSent = DateTime.Now,
-                DateRead = null,
-                Content = message,
-                ToUserId = friend.UserIdfriend,
-                FriendId = friend.FriendKey,
-                AttachedFiles = AttachedFiles
-            };
-            messengeChat.Add(ms);
-            messengeChat.SaveChanges();
+                ms.FromUserId = userId;
+                ms.DateSent = DateTime.Now;
+                ms.DateRead = null;
+                ms.Content = message;
+                ms.ToUserId = friend.UserIdfriend;
+                ms.FriendId = friend.FriendKey;
+                ms.AttachedFiles = AttachedFiles;
+            
+                messengeChat.Add(ms);
+                messengeChat.SaveChanges();
+            }
+            else
+            {
+                ms.FromUserId = userId;
+                ms.DateSent = DateTime.Now;
+                ms.DateRead = null;
+                ms.Content = message;
+                ms.ToUserId = 0;
+                ms.FriendId = friendKey;
+                ms.AttachedFiles = AttachedFiles;
+                
+                messengeChat.Add(ms);
+                messengeChat.SaveChanges();
+            }
+            
 
 
             MessageModel messageModel = new MessageModel()
@@ -55,7 +71,7 @@ namespace WebAPI.Hubs
                               where u.UserId == ms.ToUserId
                               select u.FirstName + " " + u.LastName).SingleOrDefault(),
                 Message = ms.Content,
-                IsOwnMessage = ms.FromUserId == friend.UserId ? true : false,
+                IsOwnMessage = ms.FromUserId == userId ? true : false,
                 IsSystemMessage = false,
                 DateSent = ms.DateSent,
                 DateRead = ms.DateRead,
@@ -151,7 +167,6 @@ namespace WebAPI.Hubs
             var modelFriend = (from f in messengeChat.Friends
                               join u in messengeChat.Users
                               on f.UserId equals u.UserId
-                              //where u.UserId == userId
                                select new FriendModel
                               {
                                   FriendId = (int)f.UserIdfriend,
@@ -195,20 +210,143 @@ namespace WebAPI.Hubs
                                                 where ms.FriendId == f.FriendKey && ms.DateRead == null && ms.FromUserId != u.UserId
                                                 select ms
                                                 ).ToList().Count == 0 ? "#5B5A5A" : "#000000",
-                               });
+                               }).ToList();
+
+
+            var modelGroupFriend = (from f in messengeChat.DetailUserGroups
+                               join u in messengeChat.Users
+                               on f.AddUserId equals u.UserId
+                               //where u.UserId == userId
+                               select new FriendModel
+                               {
+                                   FriendId = 0,
+                                   UserId = u.UserId,
+                                   status = (from us in messengeChat.Users
+                                             where us.UserId == f.AddUserId
+                                             select us.Active
+                                            ).SingleOrDefault() == 1 ? true : false,
+                                   FriendKey = f.FriendKey,
+                                   Name = (from userGroup in messengeChat.UserGroups 
+                                          where userGroup.UserGroupId == f.UserGroupId
+                                          select userGroup.NickNameowner).FirstOrDefault(),
+                                   ImgURL = (from us in messengeChat.Users
+                                             where us.UserId == f.AddUserId
+                                             select us.ImgURL).SingleOrDefault(),
+                                   DateSend = (from ms in messengeChat.Messagings
+                                               where ms.FriendId == f.FriendKey
+                                               orderby ms.DateSent descending
+                                               select ms.DateSent
+                                                ).SingleOrDefault().ToString("H:mm", CultureInfo.InvariantCulture),
+                                   CountUnRead = (from ms in messengeChat.Messagings
+                                                  where ms.FriendId == f.FriendKey && ms.DateRead == null && ms.FromUserId != u.UserId
+                                                  select ms
+                                                ).ToList().Count,
+                                   IdMessageNew = (from ms in messengeChat.Messagings
+                                                   where ms.FriendId == f.FriendKey && ms.DateRead == null && ms.FromUserId != u.UserId
+                                                   select ms.MessageId
+                                                ).ToList(),
+                                   MessageNew = (from ms in messengeChat.Messagings
+                                                 where ms.FriendId == f.FriendKey
+                                                 orderby ms.DateSent descending
+                                                 select ms.Content
+                                                ).SingleOrDefault(),
+
+                                   sortDate = (from ms in messengeChat.Messagings
+                                               where ms.FriendId == f.FriendKey
+                                               orderby ms.DateSent descending
+                                               select ms.DateSent
+                                                ).SingleOrDefault(),
+                                   ColorSeen = (from ms in messengeChat.Messagings
+                                                where ms.FriendId == f.FriendKey && ms.DateRead == null && ms.FromUserId != u.UserId
+                                                select ms
+                                                ).ToList().Count == 0 ? "#5B5A5A" : "#000000",
+                               }).ToList();
+
+            modelFriend.AddRange(modelGroupFriend);
 
             await Groups.AddToGroupAsync(Context.ConnectionId,"123");
 
             await Clients.Group("123").SendAsync("GetFriend", modelFriend.OrderByDescending(x => x.sortDate));
         }
 
-
         public async Task CallFriendAsync(int userID, string friendKey)
         {
             await Clients.Group(friendKey).SendAsync("ReceivePrivateVideoCall", userID, friendKey);
         }
 
+        public async Task AddGroupFriend(int userId,string ImageUrl, string GroupName,List<FriendModel> friendModels)
+        {
+            var x = friendModels;
+            var friendKey = generateUniqueID();
+            
+            messengeChat.Add(new UserGroup()
+            {
+                UserId = userId,
+                IsAdmin = 1,
+                NickNameowner = GroupName,
+            });
+            messengeChat.SaveChanges();
 
+            var UserGroupId = messengeChat
+                                    .UserGroups
+                                    .Where(c => c.UserId == userId
+                                                && c.NickNameowner.Contains(GroupName) == true)
+                                    .Select(c => c.UserGroupId)
+                                    .FirstOrDefault();
 
+            messengeChat.Add(new DetailUserGroup()
+            {
+                UserGroupId = UserGroupId,
+                AddUserId = userId,
+                NickNameGuest = messengeChat
+                                    .Users
+                                    .Where(c => c.UserId == userId )
+                                    .Select(c => c.FirstName +" "+ c.LastName)
+                                    .FirstOrDefault(),
+                FriendKey = friendKey
+            });
+            messengeChat.SaveChanges();
+
+            foreach(var friend in friendModels)
+            {
+                messengeChat.Add(new DetailUserGroup()
+                {
+                    UserGroupId = UserGroupId,
+                    AddUserId = friend.FriendId,
+                    NickNameGuest = friend.Name,
+                    FriendKey = friendKey
+                });
+                messengeChat.SaveChanges();
+            }
+            
+
+            messengeChat.Add(new Messaging()
+            {
+                FromUserId = userId,
+                DateSent = DateTime.Now,
+                DateRead = null,
+                Content = "Add success Group",
+                ToUserId = 0,
+                FriendId = friendKey,
+                AttachedFiles= null
+            });
+            messengeChat.SaveChanges();
+
+            await Clients.Caller.SendAsync("AddGroupSuccess");
+        }
+
+           private string generateUniqueID(int _characterLength = 11)
+        {
+            System.Text.StringBuilder _builder = new System.Text.StringBuilder();
+            Enumerable
+                .Range(65, 26)
+                .Select(e => ((char)e).ToString())
+                .Concat(Enumerable.Range(97, 26).Select(e => ((char)e).ToString()))
+                .Concat(Enumerable.Range(0, 10).Select(e => e.ToString()))
+                .OrderBy(e => Guid.NewGuid())
+                .Take(_characterLength)
+                .ToList().ForEach(e => _builder.Append(e));
+            return _builder.ToString();
+        }
     }
 }

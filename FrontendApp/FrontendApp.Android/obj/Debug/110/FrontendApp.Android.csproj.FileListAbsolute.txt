@@ -1330,3 +1330,5 @@ D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp.Android\obj\Debug\110\res\dr
 D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp.Android\obj\Debug\110\android\src\crc64c6bd226a92a79f74\EntryStyleRenderer.java
 D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp.Android\obj\Debug\110\res\drawable\icons8pause90.png
 D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp.Android\obj\Debug\110\res\drawable\icons8play100.png
+D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp.Android\obj\Debug\110\res\drawable\icons8add80.png
+D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp.Android\obj\Debug\110\res\drawable\icons8amera90white.png

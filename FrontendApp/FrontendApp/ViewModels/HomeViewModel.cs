@@ -18,10 +18,6 @@ namespace FrontendApp.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        //private string _name;
-        //private string _message;
-        //private ObservableCollection<FriendModel> _friends;
-
         private string _gmail;
 
         private string _password;
@@ -151,8 +147,8 @@ namespace FrontendApp.ViewModels
                             IsSeen = ms.CountUnRead == 0 ? false : true,
                             sortDate = ms.sortDate,
                             ColorSeen = ms.ColorSeen,
-                            FontAttribute = ms.CountUnRead != 0 ? "Bold" : "None"
-
+                            FontAttribute = ms.CountUnRead != 0 ? "Bold" : "None",
+                            IsChecked = false
                         }) ;
                 }
 
@@ -164,9 +160,9 @@ namespace FrontendApp.ViewModels
 
         public async Task UpdateFriend(string userID)
         {
-            await hubConnection.InvokeAsync("SeenFriend", config.friendModel);
+            if (config.friendModel != null)
+                await hubConnection.InvokeAsync("SeenFriend", config.friendModel);
             await hubConnection.InvokeAsync("GetFriend", Int32.Parse(userID));
-
         }
 
         async Task Connect()
