@@ -1,5 +1,8 @@
-﻿using FrontendApp.ViewModels;
+﻿using FrontendApp.Helpers;
+using FrontendApp.Models;
+using FrontendApp.ViewModels;
 using FrontendApp.Views;
+using Newtonsoft.Json;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -13,12 +16,22 @@ namespace FrontendApp
         public App()
         {
             InitializeComponent();
-
-            MainPage = new NavigationPage( new SigninPage());
+           
+           
         }
 
-        protected override void OnStart()
+        protected async override void OnStart()
         {
+            string jsonUserModel = await Xamarin.Essentials.SecureStorage.GetAsync("storageUser");
+            if(jsonUserModel != null)
+            {
+                config.userModel = JsonConvert.DeserializeObject<UserModel>(jsonUserModel);
+                MainPage = new NavigationPage(new TabbedMessaagePage());
+            }
+            else
+            {
+                MainPage = new NavigationPage(new SigninPage());
+            } 
         }
 
         protected override void OnSleep()

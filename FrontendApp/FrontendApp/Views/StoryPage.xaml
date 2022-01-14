@@ -4,7 +4,19 @@
              x:Class="FrontendApp.Views.StoryPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Story Page!"
+            <Label 
+                x:Name="test"
+                Text="Story Page!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Label 
+                x:Name="test1"
+                Text="Story Page!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Label 
+                x:Name="test3"
+                Text="Story Page!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>

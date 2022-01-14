@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:converters="clr-namespace:FrontendApp.Converters"
+             x:Class="FrontendApp.Views.RegisterPage"
+             NavigationPage.HasNavigationBar="False"
+             >
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:InverseBoolConverter x:Key="InverseBool" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout  Padding="40" HorizontalOptions="FillAndExpand">
+            <Label Text="REGISTER" FontSize="20" FontAttributes="Bold" HorizontalTextAlignment="Center" ></Label>
+            <Grid>
+                <StackLayout IsVisible="{Binding NextRegister}">
+                    <Label Text="Email" TranslationY="10"></Label>
+                    <Entry x:Name="Email" ></Entry>
+                    <Label Text="Password" TranslationY="10"></Label>
+                    <Entry x:Name="Password" ></Entry>
+                    <Label Text="FirstName" TranslationY="10"></Label>
+                    <Entry x:Name="FirstName" ></Entry>
+                    <Label Text="LastName" TranslationY="10"></Label>
+                    <Entry x:Name="LastName" ></Entry>
+                    <Label Text="Birthday" TranslationY="10"></Label>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                        <Entry x:Name="Day"  Placeholder="Day"  HorizontalOptions="StartAndExpand"></Entry>
+                        <Label Text="/" VerticalOptions="CenterAndExpand" FontSize="30"></Label>
+                        <Entry x:Name="Month" Placeholder="Month" HorizontalOptions="CenterAndExpand" ></Entry>
+                        <Label Text="/" VerticalOptions="CenterAndExpand" FontSize="30"></Label>
+                        <Entry x:Name="Year" Placeholder="Year"  HorizontalOptions="EndAndExpand"></Entry>
+                    </StackLayout>
+
+                </StackLayout>
+
+                <StackLayout IsVisible="{Binding NextRegister, Converter={StaticResource  InverseBool}}">
+                    <Label  Text="Pick Image" TranslationY="10"></Label>
+                    <ImageButton Clicked="ImgURL_Clicked" BorderColor="Gray" BorderWidth="1" x:Name="ImgURL" Source="icons8add80" CornerRadius="90" WidthRequest="100" HeightRequest="100" Aspect="AspectFill" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand"></ImageButton>
+                    <Label Text="Number phone" TranslationY="10"></Label>
+                    <Entry x:Name="Phone" ></Entry>
+
+                    <Label Text="Address 1" TranslationY="10"></Label>
+                    <Entry x:Name="Address1"  ></Entry>
+                    <Label Text="Address 2" TranslationY="10"></Label>
+                    <Entry x:Name="Address2" ></Entry>
+                </StackLayout>
+            </Grid>
+            
+            
+            
+            
+            <ActivityIndicator x:Name="activityIndicator" Color="#289CCD" IsRunning="False" VerticalOptions="Center" HorizontalOptions="Center"></ActivityIndicator>
+            <Button Clicked="register_Clicked" x:Name="register" Text="Continue" BackgroundColor="#289CCD" TextColor="White" FontAttributes="Bold" ></Button>
+            <Button Clicked="previous_Clicked" x:Name="previous" IsVisible="{Binding NextRegister, Converter={StaticResource  InverseBool}}"   Text="Previous" BackgroundColor="Transparent"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

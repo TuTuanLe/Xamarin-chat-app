@@ -1,9 +1,4 @@
-int attr action 0x0
 int attr alpha 0x0
-int attr argType 0x0
-int attr destination 0x0
-int attr enterAnim 0x0
-int attr exitAnim 0x0
 int attr font 0x0
 int attr fontProviderAuthority 0x0
 int attr fontProviderCerts 0x0
@@ -14,20 +9,11 @@ int attr fontProviderQuery 0x0
 int attr fontStyle 0x0
 int attr fontVariationSettings 0x0
 int attr fontWeight 0x0
-int attr launchSingleTop 0x0
-int attr mimeType 0x0
-int attr nullable 0x0
-int attr popEnterAnim 0x0
-int attr popExitAnim 0x0
-int attr popUpTo 0x0
-int attr popUpToInclusive 0x0
-int attr startDestination 0x0
 int attr ttcIndex 0x0
-int attr uri 0x0
+int color androidx_core_ripple_material_light 0x0
+int color androidx_core_secondary_text_default_material_light 0x0
 int color notification_action_color_filter 0x0
 int color notification_icon_bg_color 0x0
-int color ripple_material_light 0x0
-int color secondary_text_default_material_light 0x0
 int dimen compat_button_inset_horizontal_material 0x0
 int dimen compat_button_inset_vertical_material 0x0
 int dimen compat_button_padding_horizontal_material 0x0
@@ -183,28 +169,3 @@ int styleable GradientColor_android_type 11
 int[] styleable GradientColorItem { 0x10101a5, 0x1010514 }
 int styleable GradientColorItem_android_color 0
 int styleable GradientColorItem_android_offset 1
-int[] styleable NavAction { 0x10100d0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
-int styleable NavAction_android_id 0
-int styleable NavAction_destination 1
-int styleable NavAction_enterAnim 2
-int styleable NavAction_exitAnim 3
-int styleable NavAction_launchSingleTop 4
-int styleable NavAction_popEnterAnim 5
-int styleable NavAction_popExitAnim 6
-int styleable NavAction_popUpTo 7
-int styleable NavAction_popUpToInclusive 8
-int[] styleable NavArgument { 0x10101ed, 0x1010003, 0x0, 0x0 }
-int styleable NavArgument_android_defaultValue 0
-int styleable NavArgument_android_name 1
-int styleable NavArgument_argType 2
-int styleable NavArgument_nullable 3
-int[] styleable NavDeepLink { 0x0, 0x10104ee, 0x0, 0x0 }
-int styleable NavDeepLink_action 0
-int styleable NavDeepLink_android_autoVerify 1
-int styleable NavDeepLink_mimeType 2
-int styleable NavDeepLink_uri 3
-int[] styleable NavGraphNavigator { 0x0 }
-int styleable NavGraphNavigator_startDestination 0
-int[] styleable Navigator { 0x10100d0, 0x1010001 }
-int styleable Navigator_android_id 0
-int styleable Navigator_android_label 1

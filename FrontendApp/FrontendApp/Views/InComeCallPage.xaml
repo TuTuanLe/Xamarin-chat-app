@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FrontendApp.Views.InComeCallPage"
+             xmlns:views ="clr-namespace:FrontendApp.Views"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundImageSource="https://topshare.vn/wp-content/uploads/2021/01/Hinh-nen-dien-thoai-4k-dep-va-chat-luong-2-512x1024.jpg"
+             >
+    <Grid RowDefinitions="50,*,60,30">
+        <views:GenericWebView IsVisible="False" x:Name="CallWebView" VerticalOptions="FillAndExpand" 
+                 HorizontalOptions="FillAndExpand"                 
+                 Grid.RowSpan="4"/>
+        <RelativeLayout VerticalOptions="FillAndExpand" 
+                        HorizontalOptions="FillAndExpand"
+                       
+                        BackgroundColor="Transparent"
+                        Grid.RowSpan="4"
+                        IsVisible="false"/>
+
+        <StackLayout x:Name="infomation"  Grid.Row="1" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" >
+            <Frame                                              
+                CornerRadius="45" 
+                Padding="0"
+                IsClippedToBounds="True">
+                <Image
+                    x:Name="imageFriend"
+                    Source="avatar" 
+                    HorizontalOptions="Center"
+                    WidthRequest="90" HeightRequest="90"
+                    VerticalOptions="Center"
+                    Aspect="AspectFill"
+                />
+            </Frame>
+
+            <Label x:Name="nameFriend" Text="Tu Tuan" HorizontalTextAlignment="Center" TextColor="White" FontSize="Large" FontAttributes="Bold"></Label>
+
+        
+        </StackLayout>
+
+        <Grid x:Name="popup" Grid.Row="0" Grid.RowSpan="4"  IsVisible="False" >
+            <BoxView x:Name="MenuOverlay" BackgroundColor="Black" Opacity="0.35" >
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="TapClosePopup" ></TapGestureRecognizer>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+            
+                <StackLayout x:Name="popupAnimation" Orientation="Vertical" HeightRequest="400" WidthRequest="360" VerticalOptions="Start" Margin="0,180,0,0" HorizontalOptions="CenterAndExpand" TranslationY="0" >
+                <Frame Padding="0" CornerRadius="15">
+                     <StackLayout Orientation="Vertical"  BackgroundColor="Transparent" >
+
+                        <Label Text="Please rate the quatity of your call" HorizontalTextAlignment="Center" Padding="80, 30, 80,20" FontSize="Large" TextColor="#4E4E4E"></Label>
+
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="5" Spacing="15">
+                            <ImageButton x:Name="star1" Source="icons8tar96NoTapped" WidthRequest="25" BackgroundColor="Transparent"></ImageButton>
+                            <ImageButton x:Name="star2" Source="icons8tar96NoTapped" WidthRequest="25" BackgroundColor="Transparent"></ImageButton>
+                            <ImageButton x:Name="star3" Source="icons8tar96NoTapped" WidthRequest="25" BackgroundColor="Transparent"></ImageButton>
+                            <ImageButton x:Name="star4" Source="icons8tar96NoTapped" WidthRequest="25" BackgroundColor="Transparent"></ImageButton>
+                            <ImageButton x:Name="star5" Source="icons8tar96NoTapped" WidthRequest="25" BackgroundColor="Transparent"></ImageButton>
+                        </StackLayout>
+                    
+                        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Padding="15">
+                            <Button
+                                x:Name="btnNotNow" 
+                                BackgroundColor="Transparent"
+                                TextColor="#176476" 
+                                Text="Not Now"
+                                Clicked="btnNotNow_Clicked"
+                            >
+                            </Button>
+
+                            <Button
+                    
+                            BackgroundColor="Transparent"
+                            TextColor="#BFBFBF" 
+                            Text="Submit"
+                            >
+                            </Button>
+
+                        </StackLayout>
+                    
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+         
+        </Grid>
+
+
+        <StackLayout
+                     x:Name="function"
+                     Grid.Row="2"
+                     Margin="0,0,10,0"
+                     Orientation="Horizontal"
+                     HorizontalOptions="Center"
+                     BackgroundColor="Transparent">
+
+            
+
+            <Frame HasShadow="True"
+                   CornerRadius="50"
+                   HeightRequest="60"
+                   WidthRequest="60"
+                   Padding="1"
+                   BackgroundColor="Transparent"
+                   BorderColor="LightGray"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center">
+                <ImageButton 
+                             x:Name="imageMicrophone"
+                             Source="icons8microphone90"
+                             Margin="10"
+                             CornerRadius="50"
+                             HeightRequest="30"
+                             WidthRequest="30"
+                             HorizontalOptions="Center"
+                             BackgroundColor="Transparent"
+                             Clicked="ToggleMicClick"/>
+            </Frame>
+           
+            <Frame HasShadow="True"
+                   CornerRadius="50"
+                   HeightRequest="60"
+                   WidthRequest="60"
+                   Padding="1"
+                   BackgroundColor="Transparent"
+                   BorderColor="LightGray"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center">
+                <ImageButton 
+                             
+                             Source="icons8call100reject"
+                             Margin="10"
+                             CornerRadius="50"
+                             HeightRequest="30"
+                             WidthRequest="30"
+                             HorizontalOptions="Center"
+                             BackgroundColor="Transparent"
+                             Clicked="EndCallClick"
+                             />
+            </Frame>
+
+            <Frame HasShadow="True"
+                   CornerRadius="50"
+                   HeightRequest="60"
+                   WidthRequest="60"
+                   Padding="1"
+                   BackgroundColor="Transparent"
+                   BorderColor="LightGray"
+                   HorizontalOptions="EndAndExpand"
+                   VerticalOptions="Center"
+                   >
+                <ImageButton
+                             x:Name="imageVideoCall"
+                             Source="icons8videocall96"
+                             Margin="10"
+                             CornerRadius="50"
+                             HeightRequest="25"
+                             WidthRequest="25"
+                             HorizontalOptions="Center"
+                             BackgroundColor="Transparent"
+                             Clicked="ToggelCameraClick"/>
+            </Frame>
+
+        </StackLayout>
+    </Grid>
+</ContentPage>
+    

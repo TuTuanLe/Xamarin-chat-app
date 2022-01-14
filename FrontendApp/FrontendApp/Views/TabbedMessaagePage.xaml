@@ -11,6 +11,6 @@
     <views:HomePage  Title="Home"  IconImageSource="icons8home48" ></views:HomePage>
     <views:ChatPage Title="Chat" IconImageSource="chatbubble48" ></views:ChatPage>
     <views:StoryPage Title="Story" IconImageSource="icons8camera48"></views:StoryPage>
-    <views:StoryPage Title="Profile" IconImageSource="user96" ></views:StoryPage>
-    <views:SigninPage Title="Setting" IconImageSource="user60"></views:SigninPage>
+    <views:ProfilePage Title="Profile" IconImageSource="user96" ></views:ProfilePage>
+    <views:SettingPage Title="Setting" IconImageSource="user60"></views:SettingPage>
 </TabbedPage>

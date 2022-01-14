@@ -31,6 +31,7 @@ namespace WebAPI.Models
         public string City { get; set; }
         public string Phone { get; set; }
         public string ImgURL { get; set; }
+        public string Gmail { get; set; }
 
         public virtual UserType UserIdtypeNavigation { get; set; }
         public virtual ICollection<DetailUserGroup> DetailUserGroups { get; set; }

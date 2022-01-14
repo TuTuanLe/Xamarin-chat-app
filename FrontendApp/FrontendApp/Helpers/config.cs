@@ -8,9 +8,8 @@ namespace FrontendApp.Helpers
 {
     public static class config
     {
-        public static string UserName { get; set; }
 
-        public static string password { get; set; }
+        public static UserModel userModel { get; set; }
 
         public static MainViewModel mainViewModel;
 
@@ -19,5 +18,7 @@ namespace FrontendApp.Helpers
         public static FriendModel friendModel;
 
         public static bool ScrollToEnd;
+
+
     }
 }

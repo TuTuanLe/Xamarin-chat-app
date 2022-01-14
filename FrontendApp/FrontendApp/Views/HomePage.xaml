@@ -2,17 +2,20 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FrontendApp.Views.HomePage"
-             xmlns:vm="clr-namespace:FrontendApp.ViewModels"
-             BackgroundColor="White"
+             xmlns:converters="clr-namespace:FrontendApp.Converters"
+             BackgroundColor="Transparent"
              NavigationPage.HasNavigationBar="False"
              >
-    <!--<ContentPage.BindingContext>
-        <vm:HomeViewModel></vm:HomeViewModel>
-    </ContentPage.BindingContext>-->
-    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:InverseHeightConverter x:Key="InverseHeightListView" />
+            <converters:InversePeekAreaInsetsConverter x:Key="InversePeekAreaInsets" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <StackLayout>
-            <Grid ColumnDefinitions="auto , * , auto"   HeightRequest="110" BackgroundColor="#1C76D2">
+            <Grid ColumnDefinitions="auto , * , auto"   HeightRequest="125" BackgroundColor="#1C76D2">
                 <Grid.Clip>
                     <PathGeometry Figures="m-19.50252,-0.49249l481.00001,0l0,34.37909c-241.67892,24.3453 -238.14215,30.90171 -481.00001,53.87691l0,-88.256z" />
                 </Grid.Clip>
@@ -21,190 +24,183 @@
 
           
 
-            <Grid ColumnDefinitions="*,auto,*" Margin="10,0,10,0"  >
-                <Label Grid.Column="0" Text="Story" FontAttributes="Bold" FontSize="20" TextColor="Black"></Label>
-                <Label Grid.Column="2" Text="See all" HorizontalOptions="End" VerticalOptions="CenterAndExpand"></Label>
-                <Frame TranslationY="-90"
-                       TranslationX="150"
-                    VerticalOptions="FillAndExpand"
-                       HorizontalOptions="FillAndExpand"
-                    Grid.Column="1" 
-                    CornerRadius="20" 
-                    HasShadow="True"
-                    Padding="5"
-    
-                    IsClippedToBounds="True">
-                    <ImageButton     
-                        x:Name="search"
-                        Source="search"
-                        VerticalOptions="End"
-                        BackgroundColor="White"
-                        HeightRequest="30"
-                        WidthRequest="30"
-                        Aspect="AspectFit"
-                    ></ImageButton>
-                </Frame>
-            </Grid>
-            <CarouselView ItemsSource="{Binding Storys}" PeekAreaInsets="120"  HeightRequest="200" Margin="10,0,0,0 ">
       
-                <CarouselView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame 
-                            HeightRequest="200"
-                            WidthRequest="100"
-                            Margin="10"
-                            Padding="5"
-                            BackgroundColor="Transparent"
-                            HasShadow="True"
-                            
-                            HorizontalOptions="CenterAndExpand"
-                          
-                            >
-                            <Grid >
-                                <StackLayout BackgroundColor="Black">
-                                    <Image Source="{Binding ImgURl}"
-                                           Aspect="AspectFill"
-                                           Opacity="0.8"
-                                           HeightRequest="200"
-                                           
-                                      ></Image>
-                                </StackLayout>
-                                <StackLayout>
-                                    <Label Margin="10" Text="Add Story" TextColor="White" FontSize="12" VerticalOptions="EndAndExpand" HorizontalOptions="Start"></Label>
-                                </StackLayout>
-                                <StackLayout>
-                                    <ImageButton 
-                                        Grid.Column="2"
-                                        Source="camera"
-                                        BackgroundColor="Transparent"
-                                        VerticalOptions="CenterAndExpand"
-                                        HeightRequest="24"
-                                        WidthRequest="24"
-                                    ></ImageButton>
-                                </StackLayout>
-                            </Grid>
-                        </Frame>
-                    </DataTemplate>
-                </CarouselView.ItemTemplate>
-            </CarouselView>
-            <!--title friend active now-->
-            <Grid ColumnDefinitions="*,*" Margin="10,0,10,0" >
-                <Label Grid.Column="0" Text="Active" FontAttributes="Bold" FontSize="20"  TextColor="Black"></Label>
-                <Label Grid.Column="1" Text="See all" HorizontalOptions="End" VerticalOptions="CenterAndExpand"></Label>
-            </Grid>
-            <!--list friend active now-->
-            <CarouselView ItemsSource="{Binding Friends}" PeekAreaInsets="160" HeightRequest="100" Loop="False">
-                <CarouselView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout Padding="10" IsVisible="{Binding status}" >
-                            <Grid RowDefinitions="*" ColumnDefinitions="*">
-                                <Frame 
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    CornerRadius="20" 
-                                   VerticalOptions="CenterAndExpand"
-                                   HorizontalOptions="CenterAndExpand"
-                                   Padding="0"
-                                   IsClippedToBounds="True">
-                                    <Image Source="{Binding ImgURL}" 
-                                   HorizontalOptions="Center"
-                                   WidthRequest="45" HeightRequest="45"
-                                   VerticalOptions="Center"
-                                   Aspect="AspectFill"
-                               />
-                                </Frame>
-                                <Frame 
-                                       IsVisible="{Binding status}"
-                                       TranslationX="20"
-                                       TranslationY="20"
-                                       VerticalOptions="CenterAndExpand"
-                                       HorizontalOptions="CenterAndExpand"
-                                       CornerRadius="20" 
-                                       Padding="0"
-                                       IsClippedToBounds="True">
-
-                                    <Image Source="ok" 
-                                       HorizontalOptions="Center"
-                                       WidthRequest="15" HeightRequest="15"
-                                       VerticalOptions="Center"
-                                       Aspect="AspectFill"
-                                       BackgroundColor="Transparent"
-                               />
-                                </Frame>
-                            </Grid>
-
-                            <Label Text="{Binding Name}" HorizontalTextAlignment="Center" FontSize="12" TextColor="#131313" ></Label>
-                        </StackLayout>
-                    </DataTemplate>
-                </CarouselView.ItemTemplate>
-            </CarouselView>
             
             
-            <!--title get list friend-->
-            <Grid ColumnDefinitions="*,*" Margin="10,0,10,0" >
-                <Label Grid.Column="0" Text="Recent Chat" FontAttributes="Bold" FontSize="20"  TextColor="Black"></Label>
-                <Label Grid.Column="1" Text="See all" HorizontalOptions="End" VerticalOptions="CenterAndExpand"></Label>
-            </Grid>
-               <!--get list friend-->
-            <ListView  x:Name="lstFriends" ItemSelected="lstFriends_ItemSelected" ItemsSource="{Binding Friends}" HeightRequest="200" RowHeight="70" HorizontalOptions="FillAndExpand"   VerticalOptions="CenterAndExpand" BackgroundColor="Transparent">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell Tapped="ViewCell_Tapped">
-                            <Grid ColumnDefinitions="auto,auto,*" RowDefinitions="auto,auto" Padding="10, 3,10,0">
-                                <Frame 
-                                   VerticalOptions="CenterAndExpand"
-                                   Grid.Column="0" 
-                                   Grid.RowSpan="2"
-                                   CornerRadius="20" 
-                                   Padding="0"
-                                   IsClippedToBounds="True">
-                                    <Image Source="{Binding ImgURL}" 
-                                       HorizontalOptions="Center"
-                                       WidthRequest="40" HeightRequest="40"
-                                       VerticalOptions="Center"
-                                       Aspect="AspectFill"
-                               />
-                                </Frame>
-                                <Frame IsVisible="{Binding status}"
-                                       TranslationX="20"
-                                       TranslationY="20"
-                                       VerticalOptions="CenterAndExpand"
-                                       HorizontalOptions="CenterAndExpand"
-                                       Grid.Column="0" 
-                                       Grid.RowSpan="2"
-                                       CornerRadius="20" 
-                                       Padding="0"
-                                       IsClippedToBounds="True">
-                                  
-                                    <Image Source="ok" 
-                                       HorizontalOptions="Center"
-                                       WidthRequest="15" HeightRequest="15"
-                                       VerticalOptions="Center"
-                                       Aspect="AspectFill"
-                                       BackgroundColor="Transparent"
-                               />
-                                </Frame>
-                                <Label Grid.Column="1" Grid.Row="0" Margin="10,0,0,0" Text="{Binding Name}" TextColor="{Binding ColorSeen}" FontSize="15" FontAttributes="Bold"></Label>
-                                <Label IsVisible="true" WidthRequest="200" Grid.Column="1" Grid.Row="1" Margin="10,0,0,0" VerticalOptions="CenterAndExpand" Text="{Binding MessageNew}"  LineBreakMode="TailTruncation" TextColor="{Binding ColorSeen}"></Label>
-                                <Label Grid.Column="2" Grid.Row="0" Text="{Binding DateSend}"  HorizontalOptions="End" ></Label>
-                                <Frame
-                                    IsVisible="{Binding IsSeen}"
-                                    HorizontalOptions="End"
-                                    BackgroundColor="#1F90A8"
-                                    Grid.Column="2" Grid.Row="1"
-                                    CornerRadius="20" 
-                                    WidthRequest="20"
+            <ScrollView>
+                
+                <Grid>
+                    <StackLayout>
+
+
+                        <Grid ColumnDefinitions="*,auto,*" Margin="10,0,10,0"  >
+                            <Label Grid.Column="0" Text="Story" FontAttributes="Bold" FontSize="20" TextColor="Black"></Label>
+                            <Label Grid.Column="2" Text="See all" HorizontalOptions="End" VerticalOptions="CenterAndExpand"></Label>
+                   
+                        </Grid>
+                        <CarouselView FlowDirection="LeftToRight" ItemsSource="{Binding Storys}" PeekAreaInsets="112"  HeightRequest="200" Margin="10,0,0,0" Loop="True"  >
+                            <CarouselView.ItemsLayout>
+                                <LinearItemsLayout 
+                                    Orientation="Horizontal"
+                                    SnapPointsType="MandatorySingle"
+                                    SnapPointsAlignment="End" />
+                            </CarouselView.ItemsLayout>
+                            <CarouselView.ItemTemplate>
+                    
+                            <DataTemplate>
+                                    <StackLayout>
+                                        <Frame 
+                                    HeightRequest="200"
+                                    WidthRequest="150"
                                     Padding="0"
-                                    IsClippedToBounds="True">
-                                    <Label  Grid.Column="2" Grid.Row="1" Text="{Binding CountUnRead}"  TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                    CornerRadius="7"
+                                    BackgroundColor="Transparent"
+                                    HasShadow="True"
+                                    HorizontalOptions="CenterAndExpand"
+                                    VerticalOptions="CenterAndExpand"
+                                    >
+                                            <Grid RowDefinitions="*">
+                                                <StackLayout>
+                                                    <Image Source="{Binding ImgURl}"
+                                                   Aspect="AspectFill"
+                                                   Opacity="0.8"
+                                                   HeightRequest="200"
+                                             />
+                                                </StackLayout>
+                                                <StackLayout>
+                                                    <Label Margin="10" Text="Add Story" TextColor="White" FontSize="12" VerticalOptions="EndAndExpand" HorizontalOptions="Start"></Label>
+                                                </StackLayout>
+                                            </Grid>
+                                        </Frame>
+                                    </StackLayout>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                    <!--title friend active now-->
+                    <Grid ColumnDefinitions="*,*" Margin="10,0,10,0" >
+                        <Label Grid.Column="0" Text="Active" FontAttributes="Bold" FontSize="20"  TextColor="Black"></Label>
+                        <Label Grid.Column="1" Text="See all" HorizontalOptions="End" VerticalOptions="CenterAndExpand"></Label>
+                    </Grid>
+                    <!--list friend active now-->
+                    <CarouselView  ItemsSource="{Binding Friends}" PeekAreaInsets="160" HeightRequest="100" Loop="True"  >
+                            <CarouselView.ItemsLayout>
+                                <LinearItemsLayout 
+                                    Orientation="Horizontal"
+                                    SnapPointsType="MandatorySingle"
+                                    SnapPointsAlignment="Start" />
+                            </CarouselView.ItemsLayout>
+                            <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Padding="0,10,0,0" >
+                                    <Grid RowDefinitions="auto" ColumnDefinitions="*">
+                                        <Frame 
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            CornerRadius="20" 
+                                           VerticalOptions="CenterAndExpand"
+                                           HorizontalOptions="CenterAndExpand"
+                                           Padding="0"
+                                           IsClippedToBounds="True">
+                                            <Image Source="{Binding ImgURL}" 
+                                           HorizontalOptions="Center"
+                                           WidthRequest="45" HeightRequest="45"
+                                           VerticalOptions="Center"
+                                           Aspect="AspectFill"
+                                       />
+                                        </Frame>
+                                        <Frame 
+                                               IsVisible="{Binding status}"
+                                               TranslationX="16"
+                                               TranslationY="16"
+                                               VerticalOptions="CenterAndExpand"
+                                               HorizontalOptions="CenterAndExpand"
+                                               CornerRadius="20" 
+                                               Padding="0"
+                                               IsClippedToBounds="True">
 
-                                </Frame>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                                            <Image Source="ok" 
+                                               HorizontalOptions="Center"
+                                               WidthRequest="15" HeightRequest="15"
+                                               VerticalOptions="Center"
+                                               Aspect="AspectFill"
+                                               BackgroundColor="Transparent"
+                                       />
+                                        </Frame>
+                                    </Grid>
+
+                                    <Label Text="{Binding Name}" HorizontalTextAlignment="Center" FontSize="12" TextColor="#131313" ></Label>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
             
+            
+                    <!--title get list friend-->
+                    <Grid ColumnDefinitions="*,*" Margin="10,0,10,0" >
+                        <Label Grid.Column="0" Text="Recent Chat" FontAttributes="Bold" FontSize="20"  TextColor="Black"></Label>
+                        <Label Grid.Column="1" Text="See all" HorizontalOptions="End" VerticalOptions="CenterAndExpand"></Label>
+                    </Grid>
+                       <!--get list friend-->
+                        <ListView  x:Name="lstFriends"  IsRefreshing="{Binding IsLoading, Mode=OneWay}"    ItemSelected="lstFriends_ItemSelected" ItemsSource="{Binding Friends}" HeightRequest="{Binding Friends.Count , Converter={ StaticResource  InverseHeightListView} }" RowHeight="70" HorizontalOptions="FillAndExpand"   VerticalOptions="CenterAndExpand" BackgroundColor="Transparent">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell Tapped="ViewCell_Tapped">
+                                    <Grid ColumnDefinitions="auto,auto,*" RowDefinitions="auto,auto" Padding="10, 3,10,0">
+                                        <Frame 
+                                           VerticalOptions="CenterAndExpand"
+                                           Grid.Column="0" 
+                                           Grid.RowSpan="2"
+                                           CornerRadius="20" 
+                                           Padding="0"
+                                           IsClippedToBounds="True">
+                                            <Image Source="{Binding ImgURL}" 
+                                               HorizontalOptions="Center"
+                                               WidthRequest="40" HeightRequest="40"
+                                               VerticalOptions="Center"
+                                               Aspect="AspectFill"
+                                       />
+                                        </Frame>
+                                        <Frame IsVisible="{Binding status}"
+                                               TranslationX="15"
+                                               TranslationY="15"
+                                               VerticalOptions="CenterAndExpand"
+                                               HorizontalOptions="CenterAndExpand"
+                                               Grid.Column="0" 
+                                               Grid.RowSpan="2"
+                                               CornerRadius="20" 
+                                               Padding="0"
+                                               IsClippedToBounds="True">
+                                  
+                                            <Image Source="ok" 
+                                               HorizontalOptions="Center"
+                                               WidthRequest="15" HeightRequest="15"
+                                               VerticalOptions="Center"
+                                               Aspect="AspectFill"
+                                               BackgroundColor="Transparent"
+                                       />
+                                        </Frame>
+                                        <Label Grid.Column="1" Grid.Row="0" Margin="10,0,0,0" Text="{Binding Name}" TextColor="{Binding ColorSeen}" FontSize="15" FontAttributes="Bold"></Label>
+                                        <Label IsVisible="true" WidthRequest="200" Grid.Column="1" Grid.Row="1" Margin="10,0,0,0" VerticalOptions="CenterAndExpand" Text="{Binding MessageNew}"  LineBreakMode="TailTruncation" TextColor="{Binding ColorSeen}"></Label>
+                                        <Label Grid.Column="2" Grid.Row="0" Text="{Binding DateSend}"  HorizontalOptions="End" ></Label>
+                                        <Frame
+                                            IsVisible="{Binding IsSeen}"
+                                            HorizontalOptions="End"
+                                            BackgroundColor="#1F90A8"
+                                            Grid.Column="2" Grid.Row="1"
+                                            CornerRadius="20" 
+                                            WidthRequest="20"
+                                            Padding="0"
+                                            IsClippedToBounds="True">
+                                            <Label Grid.Column="2" Grid.Row="1" Text="{Binding CountUnRead}"  TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                        </Frame>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    </StackLayout>
+                </Grid>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

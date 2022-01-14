@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace FrontendApp.Models
 {
-    public class FriendModel
+    public class FriendModel: INotifyPropertyChanged
     {
         public int FriendId { get; set; }
         public int UserId { get; set; }
@@ -20,5 +22,28 @@ namespace FrontendApp.Models
         public DateTime sortDate { get; set; }
         public string ColorSeen { get; set; }
         public string FontAttribute { get; set; }
+        public bool AcceptFriend { get; set; }
+
+        public bool _Ischecked;
+        public bool IsChecked
+        {
+            get
+            {
+                return _Ischecked;
+            }
+            set
+            {
+                _Ischecked = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

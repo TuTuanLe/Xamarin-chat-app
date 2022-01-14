@@ -52,6 +52,10 @@ namespace WebAPI.Models
                     .HasMaxLength(60)
                     .HasColumnName("nickNameGuest");
 
+                entity.Property(e => e.FriendKey)
+                    .HasMaxLength(250)
+                    .HasColumnName("FriendKey");
+
                 entity.Property(e => e.UserGroupId).HasColumnName("userGroupID");
 
                 entity.HasOne(d => d.AddUser)
@@ -174,6 +178,11 @@ namespace WebAPI.Models
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("address2");
+
+                entity.Property(e => e.Gmail)
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("Gmail");
 
                 entity.Property(e => e.BirthDate)
                     .HasColumnType("datetime")

@@ -38,3 +38,9 @@ D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp\obj\Debug\netstandard2.0\Vie
 D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp\obj\Debug\netstandard2.0\Views\StoryPage.xaml.g.cs
 D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp\obj\Debug\netstandard2.0\Views\SearchPage.xaml.g.cs
 D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp\obj\Debug\netstandard2.0\Views\CreateGroupPage.xaml.g.cs
+D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp\obj\Debug\netstandard2.0\Views\InComeCallPage.xaml.g.cs
+D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp\obj\Debug\netstandard2.0\Views\AcceptCallPage.xaml.g.cs
+D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp\obj\Debug\netstandard2.0\Views\RegisterPage.xaml.g.cs
+D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp\obj\Debug\netstandard2.0\Views\GetOTPPage.xaml.g.cs
+D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp\obj\Debug\netstandard2.0\Views\MyMobileNumberPage.xaml.g.cs
+D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp\obj\Debug\netstandard2.0\Views\SettingPage.xaml.g.cs

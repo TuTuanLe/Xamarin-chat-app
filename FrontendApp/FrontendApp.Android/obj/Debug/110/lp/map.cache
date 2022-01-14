@@ -1,4 +1,6 @@
 FormsViewGroup.dll
+Plugin.AudioRecorder.dll
+Plugin.LocalNotification.dll
 Xamarin.AndroidX.Activity.dll
 Xamarin.AndroidX.Annotation.dll
 Xamarin.AndroidX.Annotation.Experimental.dll

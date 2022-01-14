@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FrontendApp.Views.AcceptCallPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundImageSource="https://img4.thuthuatphanmem.vn/uploads/2020/01/05/hinh-nen-don-gian-cho-android_020634642.jpg"
+             >
+    <ContentPage.Content>
+        <RelativeLayout>
+            <Grid
+                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property= Width}"
+                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property= Height}"
+                RowDefinitions="auto,*,*"
+                >
+                <ImageButton Grid.Row="0" Source="back48" BackgroundColor="Transparent" HorizontalOptions="StartAndExpand" Padding="10" WidthRequest="50"></ImageButton>
+
+                <StackLayout Grid.Row="1" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <Frame                                              
+                            CornerRadius="45" 
+                            Padding="0"
+                            IsClippedToBounds="True">
+                        <Image Source="avatar" 
+                                HorizontalOptions="Center"
+                                WidthRequest="90" HeightRequest="90"
+                                VerticalOptions="Center"
+                                Aspect="AspectFill"
+                            />
+                    </Frame>
+
+                    <Label Text="Tu Tuan" HorizontalTextAlignment="Center" TextColor="White" FontSize="Large" FontAttributes="Bold"></Label>
+
+                    <Image Source="call50"></Image>
+                </StackLayout>
+
+
+                <Grid Grid.Row="2"  >
+                    <Grid ColumnDefinitions="*,auto,*" Margin="20" >
+                        <Frame                             
+                            Grid.Column="0" 
+                            CornerRadius="40" 
+                            VerticalOptions="End"
+                            HorizontalOptions="End"
+                            Padding="17"
+                            IsClippedToBounds="True">
+                            <Image Source="videocall" 
+                                HorizontalOptions="Center"
+                                WidthRequest="25" HeightRequest="25"
+                                VerticalOptions="Center"
+                                Aspect="AspectFill"
+                            />
+                        </Frame>
+
+                        <Frame 
+                  
+                            Grid.Column="1" 
+                            CornerRadius="40" 
+                            VerticalOptions="End"
+                            HorizontalOptions="End"
+                            Padding="17"
+                            IsClippedToBounds="True">
+                            <Image Source="record50" 
+                                HorizontalOptions="Center"
+                                WidthRequest="25" HeightRequest="25"
+                                VerticalOptions="Center"
+                                Aspect="AspectFill"
+                            />
+                        </Frame>
+
+                        <Frame 
+                
+                            Grid.Column="2" 
+                            CornerRadius="40" 
+                            VerticalOptions="End"
+                            HorizontalOptions="Start"
+                            Padding="17"
+                            HasShadow="true"
+                            BackgroundColor="#F53234"
+                            IsClippedToBounds="True">
+                            <Image Source="call50" 
+                                HorizontalOptions="Center"
+                                WidthRequest="25" HeightRequest="25"
+                                VerticalOptions="Center"
+                                Aspect="AspectFill"
+                            />
+                        </Frame>
+
+                    </Grid>
+                </Grid>
+            </Grid>
+        </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>

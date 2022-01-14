@@ -20,5 +20,7 @@ namespace WebAPI.Models
         public DateTime sortDate { get; set; }
         public string ColorSeen { get; set; }
         public bool IsSeen { get; set; }
+        public bool IsChecked { get; set; }
+        public bool AcceptFriend { get; set; }
     }
 }

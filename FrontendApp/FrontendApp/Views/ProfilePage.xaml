@@ -1,12 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FrontendApp.Views.ProfilePage">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:custom="clr-namespace:FrontendApp.Customs"
+             x:Class="FrontendApp.Views.ProfilePage"
+             BackgroundColor="White"
+             >
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Profile"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout VerticalOptions="CenterAndExpand" >
+            <Label Text="PROFILE"  VerticalOptions="Start" HorizontalOptions="CenterAndExpand" FontSize="30" Padding="10"></Label>
+
+            <StackLayout HorizontalOptions="Center">
+                <ImageButton BorderColor="Gray" BorderWidth="1" x:Name="imagebtnURL" Source="{Binding ImgURL, Mode=TwoWay}" CornerRadius="90" Aspect="AspectFill" HeightRequest="110" WidthRequest="110" BackgroundColor="Transparent"  HorizontalOptions="CenterAndExpand" ></ImageButton>
+
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center" >
+                    <Label Text="Full Name" VerticalOptions="CenterAndExpand"></Label>
+                    <custom:EntryStyle Margin="20, 0,0,0" Text="{Binding FullName , Mode=TwoWay}" HorizontalOptions="FillAndExpand"></custom:EntryStyle>
+                </StackLayout>
+                
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center" >
+                    <Label Text="Password" VerticalOptions="CenterAndExpand"></Label>
+                    <custom:EntryStyle Margin="20, 0,0,0" Text="{Binding Passwordd, Mode=TwoWay}" IsPassword="True" HorizontalOptions="FillAndExpand"></custom:EntryStyle>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center" >
+                    <Label Text="PhoneNb " VerticalOptions="CenterAndExpand"></Label>
+                    <custom:EntryStyle Margin="20, 0,0,0" Text="{Binding Phone, Mode=TwoWay}" HorizontalOptions="FillAndExpand"></custom:EntryStyle>
+                </StackLayout>
+                
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center" >
+                    <Label Text="BirthDay  " VerticalOptions="CenterAndExpand"></Label>
+                    <custom:EntryStyle Margin="20,0,0,0" Text="{Binding BirthDate, Mode=TwoWay}" HorizontalOptions="FillAndExpand"></custom:EntryStyle>
+                </StackLayout>
+
+
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center" >
+                    <Label Text="Address 1" VerticalOptions="CenterAndExpand"></Label>
+                    <custom:EntryStyle Margin="20,0,0,0" Text="{Binding Address1 ,Mode=TwoWay}" HorizontalOptions="FillAndExpand"></custom:EntryStyle>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center" >
+                    <Label Text="Address 2" VerticalOptions="CenterAndExpand"></Label>
+                    <custom:EntryStyle Margin="20,0,0,0" Text="{Binding Address2 , Mode=TwoWay}" HorizontalOptions="FillAndExpand"></custom:EntryStyle>
+                </StackLayout>
+
+                <Button Clicked="Button_Clicked" Text="Update profile" BackgroundColor="#289CCD" TextColor="White"></Button>
+            </StackLayout>
+                    
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
