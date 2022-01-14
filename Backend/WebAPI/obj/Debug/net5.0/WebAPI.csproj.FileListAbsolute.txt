@@ -61,3 +61,4 @@ D:\Xamarin\Project_Chat_App\Backend\WebAPI\bin\Debug\net5.0\Humanizer.dll
 D:\Xamarin\Project_Chat_App\Backend\WebAPI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
 D:\Xamarin\Project_Chat_App\Backend\WebAPI\bin\Debug\net5.0\CloudinaryDotNet.dll
 D:\Xamarin\Project_Chat_App\Backend\WebAPI\bin\Debug\net5.0\Microsoft.Extensions.WebEncoders.dll
+D:\Xamarin\Project_Chat_App\Backend\WebAPI\bin\Debug\net5.0\Twilio.dll

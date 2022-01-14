@@ -2,6 +2,7 @@
 using FrontendApp.Models;
 using Microsoft.AspNetCore.SignalR.Client;
 using Plugin.AudioRecorder;
+using Plugin.LocalNotification;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -265,6 +266,18 @@ namespace FrontendApp.ViewModels
                     checkAudioFile = String.IsNullOrEmpty(ms.AttachedFiles) ? false : (ms.AttachedFiles.Contains("tutuanle/record/upload") ? true : false),
                     AttachFilesAudio = ms.AttachedFiles
                 });
+
+                var notification = new NotificationRequest
+                {
+                    BadgeNumber = 1,
+                    Description = ms.Message,
+                    Title = ms.ToNameUser,
+                    ReturningData = "CHAT MESSAGE UIT",
+                    NotificationId = 1337,
+
+                };
+                NotificationCenter.Current.Show(notification);
+
                 MessagingCenter.Send<MainViewModel>(this, "ScrollToEnd");
             });
 

@@ -1,9 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:converters="clr-namespace:FrontendApp.Converters"
              x:Class="FrontendApp.Views.ChatPage"
              BackgroundColor="White"
              >
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:InverseBoolConverter x:Key="InverseBool" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ContentPage.Content>
         <StackLayout>
@@ -19,7 +26,8 @@
                     Padding="0"
                     IsClippedToBounds="True">
                     <Image
-                        Source="avatar" 
+                        x:Name="imageURL"
+                        Source="" 
                         HorizontalOptions="Center"
                         WidthRequest="40" HeightRequest="40"
                         VerticalOptions="Center"
@@ -29,7 +37,7 @@
                 </Frame>
 
                 <Label 
-                    Text="Chat"
+                    x:Name="NameUser"
                     Grid.Column="1"
                     VerticalOptions="Center"
                     HorizontalOptions="Start"
@@ -154,8 +162,8 @@
                               SelectionMode="None" ItemsSource="{Binding Friends}" RowHeight="70" HeightRequest="600" HorizontalOptions="FillAndExpand"   VerticalOptions="Start" BackgroundColor="Transparent">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell >
-                                <Grid ColumnDefinitions="auto,auto,*" RowDefinitions="auto,auto" Padding="10, 3,10,0">
+                            <ViewCell x:Name="tappedItemFriend" Tapped="tappedItemFriend_Tapped" >
+                                <Grid ColumnDefinitions="auto,auto,auto, auto,*" RowDefinitions="auto,auto" Padding="10, 3,10,0">
                                     <Frame 
                                        VerticalOptions="CenterAndExpand"
                                        Grid.Column="0" 
@@ -187,18 +195,52 @@
                                            VerticalOptions="Center"
                                            Aspect="AspectFill"
                                            BackgroundColor="Transparent"
-                                   />
-                                    </Frame>
+                                           />
+                                            </Frame>
                                         <Label Grid.Column="1" Grid.Row="0" Margin="10,0,0,0" Text="{Binding Name}" TextColor="{Binding ColorSeen}" FontSize="15" FontAttributes="Bold">
                                            
                                         </Label>
                                         <Label IsVisible="true" WidthRequest="200" Grid.Column="1" Grid.Row="1" Margin="10,0,0,0" VerticalOptions="CenterAndExpand" Text="{Binding MessageNew}"  FontAttributes="{Binding FontAttribute}" LineBreakMode="TailTruncation" TextColor="{Binding ColorSeen}"></Label>
-                                        <Label Grid.Column="2" Grid.Row="0" Text="{Binding DateSend}"  HorizontalOptions="End" TextColor="{Binding ColorSeen}" ></Label>
-                                    <Frame
+                                        <Label Grid.Column="4" Grid.Row="0" Text="{Binding DateSend}"  HorizontalOptions="End" TextColor="{Binding ColorSeen}" ></Label>
+                                        <Frame
+                                            IsVisible="{Binding AcceptFriend, Converter={StaticResource  InverseBool} }"
+                                            Padding="0"
+                                            Grid.RowSpan="2"
+                                            Grid.Column="3"
+                                            IsClippedToBounds="True"
+                                            CornerRadius="30"
+                                            WidthRequest="30"
+                                            HeightRequest="30"
+                                            VerticalOptions="Center"
+                                            BorderColor="red"
+                                            HasShadow="True"
+                                            >
+                                            <ImageButton x:Name="Cancel" Clicked="Cancel_Clicked" Source="icons8close144"  BackgroundColor="Transparent"  WidthRequest="30" Aspect="AspectFit" ></ImageButton>
+                                        </Frame>
+
+                                        <Frame
+                                            IsVisible="{Binding AcceptFriend, Converter={StaticResource  InverseBool} }"
+                                            Padding="0"
+                                            Grid.RowSpan="2"
+                                            Grid.Column="2"
+                                            IsClippedToBounds="True"
+                                            CornerRadius="30"
+                                            WidthRequest="30"
+                                            HeightRequest="30"
+                                            VerticalOptions="Center"
+                                            BorderColor="Green"
+                                            HasShadow="True"
+                                            >
+                                            <ImageButton x:Name="AcceptFriend" Clicked="AcceptFriend_Clicked" IsVisible="{Binding AcceptFriend, Converter={StaticResource  InverseBool} }" Source="icons8checkmark96" BackgroundColor="Transparent"  WidthRequest="30" ></ImageButton>
+                                        </Frame>
+
+
+                                       
+                                        <Frame
                                         IsVisible="{Binding IsSeen}"
                                         HorizontalOptions="End"
                                         BackgroundColor="#1C76D2"
-                                        Grid.Column="2" Grid.Row="1"
+                                        Grid.Column="4" Grid.Row="1"
                                         CornerRadius="20" 
                                         WidthRequest="17"
                                         Padding="0"

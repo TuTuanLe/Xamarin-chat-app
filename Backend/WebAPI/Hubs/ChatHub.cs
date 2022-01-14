@@ -164,11 +164,64 @@ namespace WebAPI.Hubs
 
         public async Task GetFriend(int userId)
         {
+            var accceptFriend = (from f in messengeChat.Friends
+                                 join u in messengeChat.Users
+                                 on f.UserId equals u.UserId
+                                 where f.status == 0
+                                 select new FriendModel
+                                 {
+                                     AcceptFriend = false,
+                                     FriendId = (int)f.UserIdfriend,
+                                     UserId = u.UserId,
+                                     status = (from us in messengeChat.Users
+                                               where us.UserId == f.UserId
+                                               select us.Active
+                                            ).SingleOrDefault() == 1 ? true : false,
+                                     FriendKey = f.FriendKey,
+                                     Name = (from us in messengeChat.Users
+                                             where us.UserId == f.UserId
+                                             select us.FirstName + " " + us.LastName).SingleOrDefault(),
+                                     ImgURL = (from us in messengeChat.Users
+                                               where us.UserId == f.UserId
+                                               select us.ImgURL).SingleOrDefault(),
+                                     DateSend = (from ms in messengeChat.Messagings
+                                                 where ms.FriendId == f.FriendKey
+                                                 orderby ms.DateSent descending
+                                                 select ms.DateSent
+                                                ).SingleOrDefault().ToString("H:mm", CultureInfo.InvariantCulture),
+                                     CountUnRead = (from ms in messengeChat.Messagings
+                                                    where ms.FriendId == f.FriendKey && ms.DateRead == null && ms.FromUserId != u.UserId
+                                                    select ms
+                                                ).ToList().Count,
+                                     IdMessageNew = (from ms in messengeChat.Messagings
+                                                     where ms.FriendId == f.FriendKey && ms.DateRead == null && ms.FromUserId != u.UserId
+                                                     select ms.MessageId
+                                                ).ToList(),
+                                     MessageNew = (from ms in messengeChat.Messagings
+                                                   where ms.FriendId == f.FriendKey
+                                                   orderby ms.DateSent descending
+                                                   select ms.Content
+                                                ).SingleOrDefault(),
+
+                                     sortDate = (from ms in messengeChat.Messagings
+                                                 where ms.FriendId == f.FriendKey
+                                                 orderby ms.DateSent descending
+                                                 select ms.DateSent
+                                                ).SingleOrDefault(),
+                                     ColorSeen = (from ms in messengeChat.Messagings
+                                                  where ms.FriendId == f.FriendKey && ms.DateRead == null && ms.FromUserId != u.UserId
+                                                  select ms
+                                                ).ToList().Count == 0 ? "#5B5A5A" : "#000000",
+                                 }).ToList();
+
+
             var modelFriend = (from f in messengeChat.Friends
                               join u in messengeChat.Users
                               on f.UserId equals u.UserId
+                              where f.status == 1
                                select new FriendModel
                               {
+                                  AcceptFriend = true,
                                   FriendId = (int)f.UserIdfriend,
                                   UserId = u.UserId,
                                   status = (from us in messengeChat.Users 
@@ -216,9 +269,9 @@ namespace WebAPI.Hubs
             var modelGroupFriend = (from f in messengeChat.DetailUserGroups
                                join u in messengeChat.Users
                                on f.AddUserId equals u.UserId
-                               //where u.UserId == userId
                                select new FriendModel
                                {
+                                   AcceptFriend = true,
                                    FriendId = 0,
                                    UserId = u.UserId,
                                    status = (from us in messengeChat.Users
@@ -263,7 +316,7 @@ namespace WebAPI.Hubs
                                }).ToList();
 
             modelFriend.AddRange(modelGroupFriend);
-
+            modelFriend.AddRange(accceptFriend);
             await Groups.AddToGroupAsync(Context.ConnectionId,"123");
 
             await Clients.Group("123").SendAsync("GetFriend", modelFriend.OrderByDescending(x => x.sortDate));
@@ -276,7 +329,7 @@ namespace WebAPI.Hubs
 
         public async Task AddGroupFriend(int userId,string ImageUrl, string GroupName,List<FriendModel> friendModels)
         {
-            var x = friendModels;
+          
             var friendKey = generateUniqueID();
             
             messengeChat.Add(new UserGroup()
@@ -335,7 +388,7 @@ namespace WebAPI.Hubs
             await Clients.Caller.SendAsync("AddGroupSuccess");
         }
 
-           private string generateUniqueID(int _characterLength = 11)
+        private string generateUniqueID(int _characterLength = 11)
         {
             System.Text.StringBuilder _builder = new System.Text.StringBuilder();
             Enumerable
@@ -348,5 +401,9 @@ namespace WebAPI.Hubs
                 .ToList().ForEach(e => _builder.Append(e));
             return _builder.ToString();
         }
+        //public async Task AddFriend()
+        //{
+
+        //}
     }
 }

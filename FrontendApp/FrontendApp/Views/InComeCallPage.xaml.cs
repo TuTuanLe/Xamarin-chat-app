@@ -63,7 +63,7 @@ namespace FrontendApp.Views
         {
             try
             {
-                await CallWebView.EvaluateJavaScriptAsync($"init('{Int32.Parse(config.UserName) }');");
+                await CallWebView.EvaluateJavaScriptAsync($"init('{config.userModel.UserId }');");
                 await Task.Delay(2000);
                 await CallWebView.EvaluateJavaScriptAsync($"startCall('{friend.FriendId}');");
                 CallWebView.IsVisible = true;

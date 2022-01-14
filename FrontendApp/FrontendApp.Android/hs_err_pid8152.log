@@ -1,0 +1,191 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 32744 bytes for ChunkPool::allocate
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Unscaled Compressed Oops mode in which the Java heap is
+#     placed in the first 4GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 4GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (allocation.cpp:272), pid=8152, tid=0x0000000000000978
+#
+# JRE version: OpenJDK Runtime Environment (8.0_302-b08) (build 1.8.0_302-b08)
+# Java VM: OpenJDK 64-Bit Server VM (25.302-b08 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000027e2252e000):  JavaThread "C2 CompilerThread1" daemon [_thread_in_native, id=2424, stack(0x000000fa4fd00000,0x000000fa4fe00000)]
+
+Stack: [0x000000fa4fd00000,0x000000fa4fe00000]
+[error occurred during error reporting (printing stack bounds), id 0xc0000005]
+
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+
+
+Current CompileTask:
+C2:     91   42       4       java.lang.String::hashCode (55 bytes)
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x0000027e225b0000 JavaThread "Service Thread" daemon [_thread_blocked, id=13212, stack(0x000000fa4ff00000,0x000000fa50000000)]
+  0x0000027e22533800 JavaThread "C1 CompilerThread2" daemon [_thread_in_native, id=7604, stack(0x000000fa4fe00000,0x000000fa4ff00000)]
+=>0x0000027e2252e000 JavaThread "C2 CompilerThread1" daemon [_thread_in_native, id=2424, stack(0x000000fa4fd00000,0x000000fa4fe00000)]
+  0x0000027e2252a000 JavaThread "C2 CompilerThread0" daemon [_thread_in_native, id=6096, stack(0x000000fa4fc00000,0x000000fa4fd00000)]
+  0x0000027e22524000 JavaThread "Attach Listener" daemon [_thread_blocked, id=9900, stack(0x000000fa4fb00000,0x000000fa4fc00000)]
+  0x0000027e22522800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=12236, stack(0x000000fa4fa00000,0x000000fa4fb00000)]
+  0x0000027e21dcc000 JavaThread "Finalizer" daemon [_thread_blocked, id=16568, stack(0x000000fa4f900000,0x000000fa4fa00000)]
+  0x0000027e224f6000 JavaThread "Reference Handler" daemon [_thread_blocked, id=13516, stack(0x000000fa4f800000,0x000000fa4f900000)]
+  0x0000027e0e1ac800 JavaThread "main" [_thread_in_Java, id=9132, stack(0x000000fa4f200000,0x000000fa4f300000)]
+
+Other Threads:
+  0x0000027e224d2800 VMThread [stack: 0x000000fa4f700000,0x000000fa4f800000] [id=11092]
+  0x0000027e225b2000 WatcherThread [stack: 0x000000fa50000000,0x000000fa50100000] [id=2184]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+heap address: 0x00000000c0000000, size: 1024 MB, Compressed Oops mode: 32-bit
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 3
+Compressed class space size: 1073741824 Address: 0x0000000100000000
+
+Heap:
+ PSYoungGen      total 38400K, used 2408K [0x00000000eab00000, 0x00000000ed580000, 0x0000000100000000)
+  eden space 33280K, 7% used [0x00000000eab00000,0x00000000ead5a380,0x00000000ecb80000)
+  from space 5120K, 0% used [0x00000000ed080000,0x00000000ed080000,0x00000000ed580000)
+  to   space 5120K, 0% used [0x00000000ecb80000,0x00000000ecb80000,0x00000000ed080000)
+ ParOldGen       total 87552K, used 0K [0x00000000c0000000, 0x00000000c5580000, 0x00000000eab00000)
+  object space 87552K, 0% used [0x00000000c0000000,0x00000000c0000000,0x00000000c5580000)
+ Metaspace       used 2665K, capacity 4480K, committed 4480K, reserved 1056768K
+  class space    used 285K, capacity 384K, committed 384K, reserved 1048576K
+
+Card table byte_map: [0x0000027e1ef40000,0x0000027e1f150000] byte_map_base: 0x0000027e1e940000
+
+Marking Bits: (ParMarkBitMap*) 0x000000006ff2c820
+ Begin Bits: [0x0000027e1f2b0000, 0x0000027e202b0000)
+ End Bits:   [0x0000027e202b0000, 0x0000027e212b0000)
+
+Polling page: 0x0000027e0fb50000
+
+CodeCache: size=245760Kb used=1116Kb max_used=1116Kb free=244644Kb
+ bounds [0x0000027e0fb80000, 0x0000027e0fdf0000, 0x0000027e1eb80000]
+ total_blobs=270 nmethods=32 adapters=151
+ compilation: enabled
+
+Compilation events (10 events):
+Event: 0.085 Thread 0x0000027e22533800 nmethod 28 0x0000027e0fc94490 code [0x0000027e0fc945e0, 0x0000027e0fc94798]
+Event: 0.086 Thread 0x0000027e22533800   29       1       java.lang.ref.Reference::get (5 bytes)
+Event: 0.086 Thread 0x0000027e22533800 nmethod 29 0x0000027e0fc941d0 code [0x0000027e0fc94320, 0x0000027e0fc94438]
+Event: 0.086 Thread 0x0000027e22533800   30       3       java.util.jar.Manifest$FastInputStream::readLine (167 bytes)
+Event: 0.086 Thread 0x0000027e22533800 nmethod 30 0x0000027e0fc93710 code [0x0000027e0fc938c0, 0x0000027e0fc93e80]
+Event: 0.086 Thread 0x0000027e22533800   31       3       java.util.HashMap::hash (20 bytes)
+Event: 0.086 Thread 0x0000027e22533800 nmethod 31 0x0000027e0fc96350 code [0x0000027e0fc964c0, 0x0000027e0fc96710]
+Event: 0.086 Thread 0x0000027e22533800   33       3       sun.nio.cs.UTF_8$Decoder::decode (779 bytes)
+Event: 0.090 Thread 0x0000027e2252a000   41       4       java.util.jar.Manifest$FastInputStream::readLine (167 bytes)
+Event: 0.090 Thread 0x0000027e2252e000   42       4       java.lang.String::hashCode (55 bytes)
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (2 events):
+Event: 0.026 Thread 0x0000027e0e1ac800 Exception <a 'java/lang/NoSuchMethodError': Method sun.misc.Unsafe.defineClass(Ljava/lang/String;[BII)Ljava/lang/Class; name or signature does not match> (0x00000000eab07cc0) thrown at [J:\jenkins\tmp\workspace\build\src\hotspot\src\share\vm\prims\jni.cpp
+Event: 0.026 Thread 0x0000027e0e1ac800 Exception <a 'java/lang/NoSuchMethodError': Method sun.misc.Unsafe.prefetchRead(Ljava/lang/Object;J)V name or signature does not match> (0x00000000eab07fa8) thrown at [J:\jenkins\tmp\workspace\build\src\hotspot\src\share\vm\prims\jni.cpp, line 4014]
+
+Events (10 events):
+Event: 0.084 loading class java/io/ByteArrayOutputStream
+Event: 0.084 loading class java/io/ByteArrayOutputStream done
+Event: 0.084 loading class java/util/jar/Attributes
+Event: 0.084 loading class java/util/jar/Attributes done
+Event: 0.084 loading class java/util/jar/Manifest$FastInputStream
+Event: 0.084 loading class java/util/jar/Manifest$FastInputStream done
+Event: 0.084 loading class java/util/jar/Attributes$Name
+Event: 0.084 loading class java/util/jar/Attributes$Name done
+Event: 0.085 loading class sun/misc/ASCIICaseInsensitiveComparator
+Event: 0.085 loading class sun/misc/ASCIICaseInsensitiveComparator done
+
+
+Dynamic libraries:
+0x00007ff6bb770000 - 0x00007ff6bb7aa000 	C:\Program Files\Eclipse Foundation\jdk-8.0.302.8-hotspot\bin\java.exe
+0x00007ffdaadd0000 - 0x00007ffdaafc5000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ffdaa260000 - 0x00007ffdaa31e000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ffda8640000 - 0x00007ffda8908000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ffda97d0000 - 0x00007ffda987c000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ffda9150000 - 0x00007ffda91ee000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ffda9520000 - 0x00007ffda95bb000 	C:\WINDOWS\System32\sechost.dll
+0x00007ffdaab60000 - 0x00007ffdaac8a000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007ffda95c0000 - 0x00007ffda9761000 	C:\WINDOWS\System32\USER32.dll
+0x00007ffda8c20000 - 0x00007ffda8c42000 	C:\WINDOWS\System32\win32u.dll
+0x00007ffda9040000 - 0x00007ffda906b000 	C:\WINDOWS\System32\GDI32.dll
+0x00007ffda8c50000 - 0x00007ffda8d5d000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ffda89f0000 - 0x00007ffda8a8d000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007ffda8af0000 - 0x00007ffda8bf0000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007ffd8f2e0000 - 0x00007ffd8f57a000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.1110_none_60b5254171f9507e\COMCTL32.dll
+0x00007ffda8ff0000 - 0x00007ffda9020000 	C:\WINDOWS\System32\IMM32.DLL
+0x00007ffd73ba0000 - 0x00007ffd73c8f000 	C:\Program Files\Eclipse Foundation\jdk-8.0.302.8-hotspot\jre\bin\msvcr120.dll
+0x00007ffd74b20000 - 0x00007ffd74bc6000 	C:\Program Files\Eclipse Foundation\jdk-8.0.302.8-hotspot\jre\bin\msvcp120.dll
+0x000000006f740000 - 0x000000006ffab000 	C:\Program Files\Eclipse Foundation\jdk-8.0.302.8-hotspot\jre\bin\server\jvm.dll
+0x00007ffda8e20000 - 0x00007ffda8e28000 	C:\WINDOWS\System32\PSAPI.DLL
+0x00007ffd99360000 - 0x00007ffd9936a000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ffd90740000 - 0x00007ffd90767000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ffd9ebd0000 - 0x00007ffd9ebd9000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x00007ffdaac90000 - 0x00007ffdaacfb000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffd9e810000 - 0x00007ffd9e81f000 	C:\Program Files\Eclipse Foundation\jdk-8.0.302.8-hotspot\jre\bin\verify.dll
+0x00007ffd85680000 - 0x00007ffd856a9000 	C:\Program Files\Eclipse Foundation\jdk-8.0.302.8-hotspot\jre\bin\java.dll
+0x00007ffd9bbb0000 - 0x00007ffd9bbc6000 	C:\Program Files\Eclipse Foundation\jdk-8.0.302.8-hotspot\jre\bin\zip.dll
+0x00007ffda9ab0000 - 0x00007ffdaa1f4000 	C:\WINDOWS\System32\SHELL32.dll
+0x00007ffda6480000 - 0x00007ffda6c14000 	C:\WINDOWS\SYSTEM32\windows.storage.dll
+0x00007ffdaa320000 - 0x00007ffdaa675000 	C:\WINDOWS\System32\combase.dll
+0x00007ffda7d80000 - 0x00007ffda7dae000 	C:\WINDOWS\SYSTEM32\Wldp.dll
+0x00007ffda9a00000 - 0x00007ffda9aad000 	C:\WINDOWS\System32\SHCORE.dll
+0x00007ffdaa680000 - 0x00007ffdaa6d5000 	C:\WINDOWS\System32\shlwapi.dll
+0x00007ffda8420000 - 0x00007ffda843f000 	C:\WINDOWS\SYSTEM32\profapi.dll
+
+VM Arguments:
+jvm_args: -Xmx1G 
+java_command: com.android.tools.r8.D8 --debug --min-api 21 --output obj\Debug\110\android\bin\ --lib C:\Program Files (x86)\Android\android-sdk\platforms\android-30\android.jar obj\Debug\110\android\bin\classes.zip C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v11.0\mono.android.jar C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Xamarin\Android\java_runtime_fastdev.jar C:\Program Files (x86)\Microsoft\Xamarin\NuGet\xamarin.google.guava.listenablefuture\1.0.0.2\buildTransitive\monoandroid50\guava-listenablefuture.jar C:\Users\tutua\.nuget\packages\xamarin.androidx.annotation\1.2.0.1\buildTransitive\monoandroid90\..\..\jar\androidx.annotation.annotation.jar C:\Users\tutua\.nuget\packages\xamarin.androidx.collection\1.1.0.8\buildTransitive\monoandroid90\..\..\jar\androidx.collection.collection.jar C:\Users\tutua\.nuget\packages\xamarin.androidx.lifecycle.common\2.3.1.1\buildTransitive\monoandroid90\..\..\jar\androidx.lifecycle.lifecycle-common.jar C:\Users\tutua\.nuget\packages\xamarin.androidx.arch.core.common\2.1.0.9\buildTransitive\monoandroid90\..\..\jar\androidx.arch.core.core-common.jar C:\Users\tutua\.nuget\packages\xamarin.androidx.constraintlayout.core\1.0.0\buildTransitive\monoandroid90\..\..\jar\androidx.constraintlayout.constraintlayout-core.jar C:\Users\tutua\.nuget\packages\xamarin.androidx.concurrent.futures\1.1.0.3\buildTransitive\monoandroid90\..\..\jar\androidx.concurrent.concurrent-futures.jar obj\Debug\110\lp\0\jl\formsviewgroup.jar obj\Debug\110\lp\100\jl\classes.jar obj\Debug\110\lp\101\jl\classes.jar obj\Debug\110\lp\102\jl\classes.jar obj\Debug\110\lp\103\jl\classes.jar obj\Debug\110\lp\105\jl\classes.jar obj\Debug\110\lp\60\jl\classes.jar obj\Debug\110\lp\61\jl\classes.jar obj\Debug\110\lp\62\jl\classes.jar obj\Debug\110\lp\63\jl\classes.jar obj\Debug\110\lp\64\jl\classes.jar obj\Debug\110\lp\65\jl\classes.jar obj\Debug\110\lp\66\jl\classes.
+java_class_path (initial): C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Xamarin\Android\r8.jar
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=C:\Program Files\Microsoft MPI\Bin\;C:\Program Files\Eclipse Foundation\jdk-8.0.302.8-hotspot\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\AMD\ATI.ACE\Core-Static;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Git\cmd;C:\Program Files (x86)\dotnet\;C:\Program Files (x86)\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Azure Data Studio\bin;C:\Users\tutua\AppData\Local\Microsoft\WindowsApps;;C:\Users\tutua\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\tutua\.dotnet\tools;C:\Program Files\Azure Data Studio\bin
+USERNAME=tutua
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 60 Stepping 3, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 10.0 , 64 bit Build 19041 (10.0.19041.1348)
+
+CPU:total 4 (initial active 4) (2 cores per cpu, 2 threads per core) family 6 model 60 stepping 3, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2
+
+Memory: 4k page, physical 8308212k(711704k free), swap 12502516k(4120k free)
+
+vm_info: OpenJDK 64-Bit Server VM (25.302-b08) for windows-amd64 JRE (1.8.0_302-b08), built on Jul 20 2021 21:31:03 by "jenkins" with MS VC++ 12.0 (VS2013)
+
+time: Fri Jan 14 15:33:44 2022
+timezone: SE Asia Standard Time
+elapsed time: 0.095152 seconds (0d 0h 0m 0s)
+

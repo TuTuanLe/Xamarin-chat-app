@@ -179,6 +179,11 @@ namespace WebAPI.Models
                     .IsUnicode(false)
                     .HasColumnName("address2");
 
+                entity.Property(e => e.Gmail)
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("Gmail");
+
                 entity.Property(e => e.BirthDate)
                     .HasColumnType("datetime")
                     .HasColumnName("birthDate");

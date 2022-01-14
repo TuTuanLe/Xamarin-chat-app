@@ -18,7 +18,7 @@ namespace FrontendApp.Views
 
         public HomePage()
         {
-            config.homeViewModel = new HomeViewModel(config.UserName);
+            config.homeViewModel = new HomeViewModel(config.userModel.UserId);
             BindingContext = config.homeViewModel;
             InitializeComponent();
         }

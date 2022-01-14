@@ -9,6 +9,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:InverseHeightConverter x:Key="InverseHeightListView" />
+            <converters:InversePeekAreaInsetsConverter x:Key="InversePeekAreaInsets" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -37,7 +38,7 @@
                             <Label Grid.Column="2" Text="See all" HorizontalOptions="End" VerticalOptions="CenterAndExpand"></Label>
                    
                         </Grid>
-                        <CarouselView ItemsSource="{Binding Storys}" PeekAreaInsets="127"  HeightRequest="200" Margin="10,0,0,0" Loop="True"  >
+                        <CarouselView FlowDirection="LeftToRight" ItemsSource="{Binding Storys}" PeekAreaInsets="112"  HeightRequest="200" Margin="10,0,0,0" Loop="True"  >
                             <CarouselView.ItemsLayout>
                                 <LinearItemsLayout 
                                     Orientation="Horizontal"
@@ -81,7 +82,7 @@
                         <Label Grid.Column="1" Text="See all" HorizontalOptions="End" VerticalOptions="CenterAndExpand"></Label>
                     </Grid>
                     <!--list friend active now-->
-                    <CarouselView  ItemsSource="{Binding Friends}" PeekAreaInsets="170" HeightRequest="100" Loop="True"  >
+                    <CarouselView  ItemsSource="{Binding Friends}" PeekAreaInsets="160" HeightRequest="100" Loop="True"  >
                             <CarouselView.ItemsLayout>
                                 <LinearItemsLayout 
                                     Orientation="Horizontal"

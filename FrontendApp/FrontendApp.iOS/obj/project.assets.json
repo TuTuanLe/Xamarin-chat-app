@@ -195,6 +195,15 @@
           "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll": {}
         }
       },
+      "Newtonsoft.Json/13.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
       "Plugin.AudioRecorder/1.1.0": {
         "type": "package",
         "frameworkAssemblies": [
@@ -208,6 +217,21 @@
         },
         "runtime": {
           "lib/xamarinios10/Plugin.AudioRecorder.dll": {}
+        }
+      },
+      "Plugin.LocalNotification/9.1.2": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "frameworkAssemblies": [
+          "System.Drawing.Common.dll"
+        ],
+        "compile": {
+          "lib/xamarinios10/Plugin.LocalNotification.dll": {}
+        },
+        "runtime": {
+          "lib/xamarinios10/Plugin.LocalNotification.dll": {}
         }
       },
       "System.Buffers/4.5.1": {
@@ -475,7 +499,9 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Microsoft.AspNetCore.SignalR.Client": "6.0.1",
+          "Newtonsoft.Json": "13.0.1",
           "Plugin.AudioRecorder": "1.1.0",
+          "Plugin.LocalNotification": "9.1.2",
           "Xamarin.Essentials": "1.7.0",
           "Xamarin.Forms": "5.0.0.2291"
         },
@@ -681,6 +707,15 @@
           "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll": {}
         }
       },
+      "Newtonsoft.Json/13.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
       "Plugin.AudioRecorder/1.1.0": {
         "type": "package",
         "frameworkAssemblies": [
@@ -694,6 +729,21 @@
         },
         "runtime": {
           "lib/xamarinios10/Plugin.AudioRecorder.dll": {}
+        }
+      },
+      "Plugin.LocalNotification/9.1.2": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "frameworkAssemblies": [
+          "System.Drawing.Common.dll"
+        ],
+        "compile": {
+          "lib/xamarinios10/Plugin.LocalNotification.dll": {}
+        },
+        "runtime": {
+          "lib/xamarinios10/Plugin.LocalNotification.dll": {}
         }
       },
       "System.Buffers/4.5.1": {
@@ -961,7 +1011,9 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Microsoft.AspNetCore.SignalR.Client": "6.0.1",
+          "Newtonsoft.Json": "13.0.1",
           "Plugin.AudioRecorder": "1.1.0",
+          "Plugin.LocalNotification": "9.1.2",
           "Xamarin.Essentials": "1.7.0",
           "Xamarin.Forms": "5.0.0.2291"
         },
@@ -1167,6 +1219,15 @@
           "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll": {}
         }
       },
+      "Newtonsoft.Json/13.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
       "Plugin.AudioRecorder/1.1.0": {
         "type": "package",
         "frameworkAssemblies": [
@@ -1180,6 +1241,21 @@
         },
         "runtime": {
           "lib/xamarinios10/Plugin.AudioRecorder.dll": {}
+        }
+      },
+      "Plugin.LocalNotification/9.1.2": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "frameworkAssemblies": [
+          "System.Drawing.Common.dll"
+        ],
+        "compile": {
+          "lib/xamarinios10/Plugin.LocalNotification.dll": {}
+        },
+        "runtime": {
+          "lib/xamarinios10/Plugin.LocalNotification.dll": {}
         }
       },
       "System.Buffers/4.5.1": {
@@ -1447,7 +1523,9 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Microsoft.AspNetCore.SignalR.Client": "6.0.1",
+          "Newtonsoft.Json": "13.0.1",
           "Plugin.AudioRecorder": "1.1.0",
+          "Plugin.LocalNotification": "9.1.2",
           "Xamarin.Essentials": "1.7.0",
           "Xamarin.Forms": "5.0.0.2291"
         },
@@ -1653,6 +1731,15 @@
           "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll": {}
         }
       },
+      "Newtonsoft.Json/13.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
       "Plugin.AudioRecorder/1.1.0": {
         "type": "package",
         "frameworkAssemblies": [
@@ -1666,6 +1753,21 @@
         },
         "runtime": {
           "lib/xamarinios10/Plugin.AudioRecorder.dll": {}
+        }
+      },
+      "Plugin.LocalNotification/9.1.2": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "frameworkAssemblies": [
+          "System.Drawing.Common.dll"
+        ],
+        "compile": {
+          "lib/xamarinios10/Plugin.LocalNotification.dll": {}
+        },
+        "runtime": {
+          "lib/xamarinios10/Plugin.LocalNotification.dll": {}
         }
       },
       "System.Buffers/4.5.1": {
@@ -1933,7 +2035,9 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Microsoft.AspNetCore.SignalR.Client": "6.0.1",
+          "Newtonsoft.Json": "13.0.1",
           "Plugin.AudioRecorder": "1.1.0",
+          "Plugin.LocalNotification": "9.1.2",
           "Xamarin.Essentials": "1.7.0",
           "Xamarin.Forms": "5.0.0.2291"
         },
@@ -2295,6 +2399,33 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "Newtonsoft.Json/13.0.1": {
+      "sha512": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "type": "package",
+      "path": "newtonsoft.json/13.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "newtonsoft.json.13.0.1.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
+      ]
+    },
     "Plugin.AudioRecorder/1.1.0": {
       "sha512": "qa8tAuqWeIKfnFLVKhGgaHhbtw7T2Ec/5smgJstyatQ97uViUIqAVTpzdyij11VOovxTGXO4xBBkYanJmzv21g==",
       "type": "package",
@@ -2314,6 +2445,25 @@
         "lib/xamarinios10/Plugin.AudioRecorder.pdb",
         "plugin.audiorecorder.1.1.0.nupkg.sha512",
         "plugin.audiorecorder.nuspec"
+      ]
+    },
+    "Plugin.LocalNotification/9.1.2": {
+      "sha512": "TGUk8tl83+Em8tOVsz3aNj1ZlTVrV3LbaJo1+Uol5IFyGcU+x1zV1ZtJd2QdQRAIksxa+xxuYI3rMO5gh3BzFw==",
+      "type": "package",
+      "path": "plugin.localnotification/9.1.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "icon.png",
+        "lib/monoandroid10.0/Plugin.LocalNotification.dll",
+        "lib/monoandroid10.0/Plugin.LocalNotification.xml",
+        "lib/netstandard2.0/Plugin.LocalNotification.dll",
+        "lib/netstandard2.0/Plugin.LocalNotification.xml",
+        "lib/xamarinios10/Plugin.LocalNotification.dll",
+        "lib/xamarinios10/Plugin.LocalNotification.xml",
+        "plugin.localnotification.9.1.2.nupkg.sha512",
+        "plugin.localnotification.nuspec"
       ]
     },
     "System.Buffers/4.5.1": {
@@ -2905,7 +3055,9 @@
     "Xamarin.iOS,Version=v1.0": [
       "FrontendApp >= 1.0.0",
       "Microsoft.AspNetCore.SignalR.Client >= 6.0.1",
+      "Newtonsoft.Json >= 13.0.1",
       "Plugin.AudioRecorder >= 1.1.0",
+      "Plugin.LocalNotification >= 9.1.2",
       "Xamarin.Essentials >= 1.7.0",
       "Xamarin.Forms >= 5.0.0.2291"
     ]
@@ -2956,9 +3108,17 @@
             "target": "Package",
             "version": "[6.0.1, )"
           },
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[13.0.1, )"
+          },
           "Plugin.AudioRecorder": {
             "target": "Package",
             "version": "[1.1.0, )"
+          },
+          "Plugin.LocalNotification": {
+            "target": "Package",
+            "version": "[9.1.2, )"
           },
           "Xamarin.Essentials": {
             "target": "Package",

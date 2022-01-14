@@ -84,3 +84,7 @@ D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp.iOS\obj\iPhone\Debug\Fronten
 D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp.iOS\obj\iPhone\Debug\FrontendApp.iOS.csproj.CopyComplete
 D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp.iOS\obj\iPhone\Debug\FrontendApp.iOS.exe
 D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp.iOS\obj\iPhone\Debug\FrontendApp.iOS.pdb
+D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp.iOS\bin\iPhone\Debug\Newtonsoft.Json.dll
+D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp.iOS\bin\iPhone\Debug\Plugin.AudioRecorder.dll
+D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp.iOS\bin\iPhone\Debug\Plugin.AudioRecorder.pdb
+D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp.iOS\bin\iPhone\Debug\Plugin.LocalNotification.dll

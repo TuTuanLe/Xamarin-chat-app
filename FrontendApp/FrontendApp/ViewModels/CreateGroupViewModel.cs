@@ -133,9 +133,6 @@ namespace FrontendApp.ViewModels
             hubConnection = new HubConnectionBuilder()
            .WithUrl($"http://192.168.1.8:5000/ChatHub")
            .Build();
-
-
-
         }
 
         public async Task UploadImage()
@@ -185,8 +182,8 @@ namespace FrontendApp.ViewModels
             if(Step == 2)
             {
                 await hubConnection.StartAsync();
-                await hubConnection.InvokeAsync("AddGroupFriend",Int32.Parse(config.UserName) ,ImageUrl ,GroupName ,FriendsGroup);
-                await config.homeViewModel.UpdateFriend(config.UserName);
+                await hubConnection.InvokeAsync("AddGroupFriend",config.userModel.UserId ,ImageUrl ,GroupName ,FriendsGroup);
+                await config.homeViewModel.UpdateFriend(config.userModel.UserId);
                 await hubConnection.StopAsync();
                 await Navigation.PopAsync();
             }

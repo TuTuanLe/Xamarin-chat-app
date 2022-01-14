@@ -1,13 +1,18 @@
 ﻿using FrontendApp.Helpers;
 using FrontendApp.Models;
+using FrontendApp.Services.Interfaces;
 using Microsoft.AspNetCore.SignalR.Client;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
+using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace FrontendApp.ViewModels
@@ -107,15 +112,28 @@ namespace FrontendApp.ViewModels
                 OnPropertyChanged();
             }
         }
-        
-       
+        DisplayInfo mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
+        private int _PeekAreaInsets ; 
+
+        public int PeekAreaInsets
+        {
+            get
+            {
+                return _PeekAreaInsets;
+            }
+            set
+            {
+                _PeekAreaInsets = value;
+                OnPropertyChanged();
+            }
+        }
+
         private HubConnection hubConnection;
 
         public Command UpdateFriendCommand { get; }
-        public HomeViewModel(string userID)
+        public HomeViewModel(int userID)
         {
-     
-            Gmail = userID;
+            PeekAreaInsets = (int)mainDisplayInfo.Width;
             Storys = new ObservableCollection<Story>();
             Friends = new ObservableCollection<FriendModel>();
             UpdateFriendCommand = new Command(async async => { await UpdateFriend(userID); });
@@ -131,7 +149,8 @@ namespace FrontendApp.ViewModels
                 Friends.Clear();
                 foreach (var ms in getfriend)
                 {
-                    if (ms.UserId == Int32.Parse(config.UserName))
+                    if (ms.UserId == config.userModel.UserId && ms.AcceptFriend == true)
+                    {
                         Friends.Add(new FriendModel()
                         {
                             FriendId = ms.FriendId,
@@ -148,8 +167,39 @@ namespace FrontendApp.ViewModels
                             sortDate = ms.sortDate,
                             ColorSeen = ms.ColorSeen,
                             FontAttribute = ms.CountUnRead != 0 ? "Bold" : "None",
-                            IsChecked = false
-                        }) ;
+                            IsChecked = false,
+                            AcceptFriend = ms.AcceptFriend
+                        });
+
+
+                    }  
+                    else if(ms.FriendId == config.userModel.UserId && ms.AcceptFriend == false)
+                    {
+                        Friends.Add(new FriendModel()
+                        {
+                            FriendId = ms.FriendId,
+                            UserId = ms.UserId,
+                            status = ms.status,
+                            Name = ms.Name,
+                            FriendKey = ms.FriendKey,
+                            ImgURL = ms.ImgURL,
+                            CountUnRead = ms.CountUnRead,
+                            DateSend = ms.DateSend,
+                            IdMessageNew = ms.IdMessageNew,
+                            MessageNew = ms.MessageNew,
+                            IsSeen = ms.CountUnRead == 0 ? false : true,
+                            sortDate = ms.sortDate,
+                            ColorSeen = ms.ColorSeen,
+                            FontAttribute = ms.CountUnRead != 0 ? "Bold" : "None",
+                            IsChecked = false,
+                            AcceptFriend = ms.AcceptFriend
+                        });
+
+                        if(DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture) == ms.DateSend)
+                            DependencyService.Get<INotification>().CreateNotification(ms.Name, $"❤️ Sent request to {config.userModel.FullName} ❤️ ");
+
+
+                    }
                 }
 
             });
@@ -158,22 +208,30 @@ namespace FrontendApp.ViewModels
             _ = Connect();
         }
 
-        public async Task UpdateFriend(string userID)
+        public async Task UpdateFriend(int userID)
         {
             if (config.friendModel != null)
                 await hubConnection.InvokeAsync("SeenFriend", config.friendModel);
-            await hubConnection.InvokeAsync("GetFriend", Int32.Parse(userID));
+            await hubConnection.InvokeAsync("GetFriend", userID);
         }
 
         async Task Connect()
         {
             await hubConnection.StartAsync();
-            await hubConnection.InvokeAsync("GetFriend", Int32.Parse(Gmail));
+            await hubConnection.InvokeAsync("GetFriend", config.userModel.UserId);
             IsConnected = true;
             IsLoading = false;
         }
 
-  
+        public async void AcceptFriend(FriendModel friendModel)
+        {
+            var json = JsonConvert.SerializeObject(friendModel);
+            HttpContent httpContent = new StringContent(json);
+            httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            var httpClient = new HttpClient();
+
+            var response = await httpClient.PutAsync("http://192.168.1.8:5000/api/friend/AcceptFriend", httpContent);
+        }
 
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")

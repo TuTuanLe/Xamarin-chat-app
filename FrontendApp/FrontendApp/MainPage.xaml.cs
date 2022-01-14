@@ -40,7 +40,7 @@ namespace FrontendApp
         {
             entryChat.Text = "";
             
-            await config.homeViewModel.UpdateFriend(config.UserName);
+            await config.homeViewModel.UpdateFriend(config.userModel.UserId);
             var v = lstMessage.ItemsSource.Cast<object>().LastOrDefault();
           
         }
@@ -54,7 +54,7 @@ namespace FrontendApp
 
         private async void backToHome_Clicked(object sender, EventArgs e)
         {
-            await config.homeViewModel.UpdateFriend(config.UserName);
+            await config.homeViewModel.UpdateFriend(config.userModel.UserId);
             await Navigation.PopAsync();
         }
 

@@ -40,6 +40,7 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.10",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.10",
           "Swashbuckle.AspNetCore": "6.2.3",
+          "Twilio": "5.70.0",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "5.0.0.0",
@@ -1378,6 +1379,23 @@
           "System.Threading": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0",
           "System.Xml.XmlDocument": "4.3.0"
+        }
+      },
+      "Twilio/5.70.0": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Tokens": "5.6.0",
+          "Newtonsoft.Json": "12.0.3",
+          "System.Collections.Specialized": "4.3.0",
+          "System.IdentityModel.Tokens.Jwt": "5.6.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Twilio.dll": {
+            "assemblyVersion": "5.70.0.0",
+            "fileVersion": "5.70.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Twilio.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/5.0.0.0": {
@@ -3858,6 +3876,13 @@
       "sha512": "sha512-MYoTCP7EZ98RrANESW05J5ZwskKDoN0AuZ06ZflnowE50LTpbR5yRg3tHckTVm5j/m47stuGgCrCHWePyHS70Q==",
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    },
+    "Twilio/5.70.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RlZhrKI2ISGDTZoYBwHHM5tRlis/Qmunvad1bHJ9J+PcjZrub1uD85GZGyn6R6wjSXnr6lAWTTKOpXbzVjRTvw==",
+      "path": "twilio/5.70.0",
+      "hashPath": "twilio.5.70.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Antiforgery/5.0.0.0": {
       "type": "referenceassembly",

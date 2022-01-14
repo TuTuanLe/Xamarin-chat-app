@@ -2,19 +2,219 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:custom="clr-namespace:FrontendApp.Customs"
+             xmlns:converters="clr-namespace:FrontendApp.Converters"
              x:Class="FrontendApp.Views.SearchPage"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="White"
              >
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:InverseStatusConverter x:Key="InverseStatus" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <StackLayout>
-            <Frame Padding="0">
-            <Grid RowDefinitions="*" ColumnDefinitions="auto, *" Padding="5">
-                <Image Grid.Row="0" Grid.Column="0"  Source="back48" WidthRequest="25" ></Image>
-                <custom:EntryStyle Grid.Row="0" Grid.Column="1" Placeholder="Search..." ></custom:EntryStyle>
+            <Grid RowDefinitions="*">
+                <StackLayout Grid.Row="0">
+                    <Frame Padding="0">
+                        <Grid RowDefinitions="*" ColumnDefinitions="auto, *" Padding="5">
+                            <Image Grid.Row="0" Grid.Column="0"  Source="back48" WidthRequest="25" ></Image>
+                            <SearchBar TextChanged="SearchBar_TextChanged" Grid.Row="0" Grid.Column="1" Placeholder="Search..." ></SearchBar>
+                        </Grid>
+                    </Frame>
+
+                    <ListView x:Name="ListUser" ItemsSource="{Binding Users}" IsPullToRefreshEnabled="True" SeparatorVisibility="None" RowHeight="60">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell Tapped="ViewCell_Tapped">
+                                    <StackLayout VerticalOptions="FillAndExpand" >
+                                        <Grid Grid.Row="2"  ColumnDefinitions="auto, *" >
+                                           
+
+                                            <Frame
+                                                Grid.Column="0"
+                                                Grid.RowSpan="2"
+                                                Margin="15,0,10,0"
+                                                Padding="0"
+                                                HorizontalOptions="StartAndExpand"
+                                                VerticalOptions="CenterAndExpand"
+                                                CornerRadius="25"
+                                                HasShadow="True"
+                                                 >
+                                                <Image Source="{Binding ImgURL}" WidthRequest="40" HeightRequest="40"></Image>
+                                            </Frame>
+
+                                            <Frame IsVisible="{Binding Active}"
+                                               TranslationX="15"
+                                               TranslationY="15"
+                                               VerticalOptions="CenterAndExpand"
+                                               HorizontalOptions="CenterAndExpand"
+                                               Grid.Column="0" 
+                                               Grid.RowSpan="2"
+                                               CornerRadius="20" 
+                                               Padding="1"
+                                               HasShadow="False"
+                                               IsClippedToBounds="True">
+                                                <Image Source="ok" 
+                                                       HorizontalOptions="Center"
+                                                       WidthRequest="12" HeightRequest="12"
+                                                       VerticalOptions="Center"
+                                                       Aspect="AspectFill"
+                                                       BackgroundColor="Transparent"
+                                           />
+                                            </Frame>
+                                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding FullName}" HorizontalTextAlignment="Start" VerticalTextAlignment="End" TextColor="Black"></Label>
+                                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding status , Converter={StaticResource  InverseStatus}}" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" FontSize="10"></Label>
+                                        </Grid>
+
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+                <Grid x:Name="popup" Grid.Row="0"   IsVisible="False"  >
+                    <BoxView x:Name="MenuOverlay" BackgroundColor="Black" Opacity="0.8" >
+                        <BoxView.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="TapClosePopup" ></TapGestureRecognizer>
+                        </BoxView.GestureRecognizers>
+                    </BoxView>
+
+                    <StackLayout x:Name="popupAnimation" Orientation="Vertical" HeightRequest="400" WidthRequest="360" VerticalOptions="Start" Margin="0,50,0,0" HorizontalOptions="CenterAndExpand" TranslationY="0" >
+                        <Frame Padding="0" CornerRadius="15">
+                            <StackLayout Orientation="Vertical"  BackgroundColor="Transparent" >
+                                <Frame
+                                        Padding="5"
+                                        BackgroundColor="#F6F5F5"
+                                        VerticalOptions="CenterAndExpand"
+                                        HorizontalOptions="EndAndExpand"
+                                        Margin="20"
+                                        CornerRadius="20"
+                                    >
+                                    <ImageButton x:Name="closePopup" Clicked="closePopup_Clicked" Source="icons8x96" BackgroundColor="Transparent" HorizontalOptions="End" WidthRequest="20" HeightRequest="20"></ImageButton>
+
+                                </Frame>
+                                <Frame Padding="0"
+                                       CornerRadius="45"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="CenterAndExpand"
+                                       IsClippedToBounds="True"
+                                       >
+                                    <Image Source="{Binding User.ImgURL}" WidthRequest="90" HeightRequest="90"></Image>    
+                                </Frame>
+
+                                <Label Text="{Binding User.FullName }" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="25" FontAttributes="Bold" TextColor="Black"></Label>
+                                
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="5" Spacing="15">
+                                    <Grid RowDefinitions="auto,auto">
+                                        <Frame
+                                            Grid.Row="0"
+                                            Padding="7"
+                                            IsClippedToBounds="True"
+                                            CornerRadius="20"
+                                        >
+                                            <ImageButton  Source="chatbubble48" WidthRequest="20" BackgroundColor="Transparent"></ImageButton>
+                                        </Frame>
+                                        <Label Grid.Row="1" Text="Chat" HorizontalTextAlignment="Center"></Label>
+                                    </Grid>
+                                    <Grid RowDefinitions="auto,auto">
+                                        <Frame
+                                            Grid.Row="0"
+                                            Padding="7"
+                                            IsClippedToBounds="True"
+                                            CornerRadius="20"
+                                        >
+                                            <ImageButton  Source="icons8call100except" WidthRequest="20" BackgroundColor="Transparent"></ImageButton>
+                                        </Frame>
+                                        <Label Grid.Row="1" Text="Call" HorizontalTextAlignment="Center"></Label>
+                                    </Grid>
+                                    <Grid RowDefinitions="auto,auto">
+                                        <Frame
+                                            Grid.Row="0"
+                                            Padding="7"
+                                            IsClippedToBounds="True"
+                                            CornerRadius="20"
+                                        >
+                                            <ImageButton  Source="icons8videocall96" WidthRequest="20" BackgroundColor="Transparent"></ImageButton>
+                                        </Frame>
+                                        <Label Grid.Row="1" Text="Video" HorizontalTextAlignment="Center"></Label>
+                                    </Grid>
+                                    
+                                </StackLayout>
+
+
+                                <Button x:Name="FC_btn" Clicked="FC_btn_Clicked" Text="{Binding SetTextBtn}" TextColor="{Binding SetTextColorBtn}" CornerRadius="11" Margin="7" BackgroundColor="#F6F5F5"></Button>
+
+                            </StackLayout>
+                        </Frame>
+
+                        <Frame Padding="0" CornerRadius="15">
+                            <StackLayout Orientation="Vertical"  BackgroundColor="Transparent" Padding="10">
+
+
+                                <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="10" >
+                                    <Frame
+                                        Padding="0"
+                                        IsClippedToBounds="True"
+                                        CornerRadius="30"
+                                        HasShadow="False"
+                                        >
+                                        <Image Source="icons8pin64" WidthRequest="30" HeightRequest="30" BackgroundColor="Transparent"></Image>
+                                    </Frame>
+
+                                    <Label Padding="10,0,0,0"  Text="{Binding User.Address1}" VerticalTextAlignment="Center" TextColor="Black"></Label>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="10" >
+                                    <Frame
+                                        Padding="0"
+                                        IsClippedToBounds="True"
+                                        CornerRadius="30"
+                                        HasShadow="False"
+                                        >
+                                        <Image Source="icons8numberpad100" WidthRequest="30" HeightRequest="30" BackgroundColor="Transparent"></Image>
+                                    </Frame>
+
+                                    <Label Padding="10,0,0,0"  Text="{Binding User.Phone}" VerticalTextAlignment="Center" TextColor="Black"></Label>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="10" >
+                                    <Frame
+                                        Padding="0"
+                                        IsClippedToBounds="True"
+                                        CornerRadius="30"
+                                        HasShadow="False"
+                                        >
+                                        <Image Source="icons8birthday100" WidthRequest="30" HeightRequest="30" BackgroundColor="Transparent"></Image>
+                                    </Frame>
+
+                                    <Label Padding="10,0,0,0"  Text="{Binding User.BirthDate}" VerticalTextAlignment="Center" TextColor="Black"></Label>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="10" >
+                                    <Frame
+                                        Padding="0"
+                                        IsClippedToBounds="True"
+                                        CornerRadius="30"
+                                        HasShadow="False"
+                                        >
+                                        <Image Source="icons8user90" WidthRequest="30" HeightRequest="30" BackgroundColor="Transparent"></Image>
+                                    </Frame>
+                                    
+                                    <Label Padding="10,0,0,0" Text="Tu Tuan, Pham Sy, Do Quyen"  VerticalTextAlignment="Center" TextColor="Black"></Label>
+                                </StackLayout>
+                            
+                                
+
+                            </StackLayout>
+                        </Frame>
+
+                    </StackLayout>
+
+                </Grid>
             </Grid>
-            </Frame>
-        </StackLayout>
             
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

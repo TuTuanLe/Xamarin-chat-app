@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:custom="clr-namespace:FrontendApp.Customs"
+             x:Class="FrontendApp.Views.GetOTPPage"
+             NavigationPage.HasNavigationBar="False"
+             >
+    <ContentPage.Content>
+        <StackLayout  Padding="30, 10,30,0" HorizontalOptions="FillAndExpand">
+            <ImageButton x:Name="backbtn"  Source="back48" BackgroundColor="Transparent" HorizontalOptions="Start" WidthRequest="30" Clicked="backbtn_Clicked"></ImageButton>
+
+            <Label Text="My Code Is " HorizontalTextAlignment="Center" FontSize="25" FontAttributes="Bold" Padding="0,0,0,10" ></Label>
+            <Image Source="UIT" WidthRequest="150" HeightRequest="150"/>
+
+
+            <Frame
+                Padding="0"
+                CornerRadius="5"
+                HasShadow="False"
+                BackgroundColor="Transparent"
+                Margin="0,20,0,0"
+                >
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <Frame
+                        Padding="0"
+                        BackgroundColor="#E5E5E7"
+                        CornerRadius="7"
+                        >
+                        <StackLayout Orientation="Horizontal" Margin="10" WidthRequest="30" >
+                            <Entry x:Name="K1" ReturnType="Next" MaxLength="1" Keyboard="Numeric" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent"></Entry>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame
+                        Padding="0"
+                        BackgroundColor="#E5E5E7"
+                        CornerRadius="7"
+                        >
+                        <StackLayout Orientation="Horizontal" Margin="10" WidthRequest="30" >
+                            <Entry x:Name="K2" ReturnType="Next" MaxLength="1" Keyboard="Numeric" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent"></Entry>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame
+                        Padding="0"
+                        BackgroundColor="#E5E5E7"
+                        CornerRadius="7"
+                        >
+                        <StackLayout Orientation="Horizontal" Margin="10" WidthRequest="30" >
+                            <Entry x:Name="K3" ReturnType="Next" MaxLength="1" Keyboard="Numeric" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent"></Entry>
+                        </StackLayout>
+                    </Frame>
+
+
+                    <Frame
+                        Padding="0"
+                        BackgroundColor="#E5E5E7"
+                        CornerRadius="7"
+                        >
+                        <StackLayout Orientation="Horizontal" Margin="10" WidthRequest="30" >
+                            <Entry x:Name="K4" ReturnType="Next" MaxLength="1" Keyboard="Numeric" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent"></Entry>
+                        </StackLayout>
+                    </Frame>
+
+                </StackLayout>
+
+            </Frame>
+
+
+
+
+            <Label x:Name="textlb" Text="Check your SMS messages, we have sent you the pin at " Padding="25,20,25,20" FontSize="Medium"  HorizontalTextAlignment="Center"  ></Label>
+            <ActivityIndicator x:Name="activityIndicator" BackgroundColor="Transparent" Color="#289CCD"  IsRunning="False" VerticalOptions="Center" HorizontalOptions="Center"></ActivityIndicator>
+            <Button x:Name="Loginbtn" Text="LOGIN" BackgroundColor="#289CCD" TextColor="White" FontAttributes="Bold"  Clicked="Loginbtn_Clicked"></Button>
+
+
+
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

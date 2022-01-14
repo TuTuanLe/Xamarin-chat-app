@@ -46,9 +46,17 @@
               "target": "Package",
               "version": "[6.0.1, )"
             },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
             "Plugin.AudioRecorder": {
               "target": "Package",
               "version": "[1.1.0, )"
+            },
+            "Plugin.LocalNotification": {
+              "target": "Package",
+              "version": "[9.1.2, )"
             },
             "Xamarin.Essentials": {
               "target": "Package",
@@ -123,9 +131,17 @@
               "version": "[2.0.3, )",
               "autoReferenced": true
             },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
             "Plugin.AudioRecorder": {
               "target": "Package",
               "version": "[1.1.0, )"
+            },
+            "Plugin.LocalNotification": {
+              "target": "Package",
+              "version": "[9.1.2, )"
             },
             "Xamarin.Essentials": {
               "target": "Package",

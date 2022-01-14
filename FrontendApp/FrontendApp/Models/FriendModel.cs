@@ -22,6 +22,7 @@ namespace FrontendApp.Models
         public DateTime sortDate { get; set; }
         public string ColorSeen { get; set; }
         public string FontAttribute { get; set; }
+        public bool AcceptFriend { get; set; }
 
         public bool _Ischecked;
         public bool IsChecked

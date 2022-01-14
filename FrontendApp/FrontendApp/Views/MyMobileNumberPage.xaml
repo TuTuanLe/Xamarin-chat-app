@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FrontendApp.Views.MyMobileNumberPage"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:custom="clr-namespace:FrontendApp.Customs"
+             >
+    <ContentPage.Content>
+        <StackLayout  Padding="30, 10,30,0" HorizontalOptions="FillAndExpand">
+            <ImageButton Source="back48" BackgroundColor="Transparent" HorizontalOptions="Start" WidthRequest="30" Clicked="ImageButton_Clicked"></ImageButton>
+            
+            <Label Text="My Mobile Number is " HorizontalTextAlignment="Center" FontSize="25" FontAttributes="Bold" Padding="0,0,0,10" ></Label>
+            <Image Source="UIT" WidthRequest="150" HeightRequest="150"/>
+
+
+            <Frame
+                Padding="0"
+                CornerRadius="5"
+                HasShadow="False"
+                BackgroundColor="#F1F2F6"
+                Margin="0,20,0,0"
+                >
+                <StackLayout Orientation="Horizontal">
+                    <Frame
+                        Padding="0"
+                        BackgroundColor="#E5E5E7"
+                        CornerRadius="5"
+                        >
+                        <StackLayout Orientation="Horizontal" Margin="10">
+                            <Label Text="+84" WidthRequest="30" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" ></Label>
+                            <Image Source="icons8down96" WidthRequest="10"></Image>
+                        </StackLayout>
+                    </Frame>
+                    <custom:EntryStyle HorizontalOptions="FillAndExpand" CharacterSpacing="5" Placeholder="Mobile Number" x:Name="numberphone"  Keyboard="Numeric"   FontSize="Medium"/>
+                </StackLayout>
+                
+            </Frame>
+            
+           
+       
+          
+            <Label Text="We need your mobile number to verify your account and to be able to get in touch" Padding="25,20,25,20" FontSize="Medium"  HorizontalTextAlignment="Center"  ></Label>
+            <Button Clicked="Button_Clicked" Text="Continue" BackgroundColor="#289CCD" TextColor="White" FontAttributes="Bold" ></Button>
+
+            
+
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

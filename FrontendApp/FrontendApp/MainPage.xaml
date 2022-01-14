@@ -179,12 +179,12 @@
                                         VerticalOptions="CenterAndExpand"
                                         Grid.Column="1" 
                                         Grid.Row="1"
-                                        
                                         CornerRadius="20" 
                                         HorizontalOptions="End"
                                         Padding="0"
                                         IsClippedToBounds="True">
-                                        <Image Source="{Binding ImgURLFromUser}" 
+                                        <Image 
+                                            Source="{Binding ImgURLFromUser}" 
                                             HorizontalOptions="Center"
                                             WidthRequest="30" HeightRequest="30"
                                             VerticalOptions="Center"
@@ -197,19 +197,20 @@
                                        Grid.Column="1" 
                                        Grid.Row="1"
                                        TranslationX="30"
-                                        TranslationY="10"
+                                       TranslationY="10"
                                        VerticalOptions="CenterAndExpand"
                                        HorizontalOptions="End"
                                        CornerRadius="20" 
                                        Padding="0"
                                        IsClippedToBounds="True">
 
-                                        <Image Source="ok" 
-                                       HorizontalOptions="Center"
-                                       WidthRequest="10" HeightRequest="10"
-                                       VerticalOptions="Center"
-                                       Aspect="AspectFill"
-                                       BackgroundColor="Transparent"
+                                        <Image 
+                                           Source="ok" 
+                                           HorizontalOptions="Center"
+                                           WidthRequest="10" HeightRequest="10"
+                                           VerticalOptions="Center"
+                                           Aspect="AspectFill"
+                                           BackgroundColor="Transparent"
                                       />
                                     </Frame>
 
@@ -218,7 +219,6 @@
                                       
                                         Grid.Row="1"
                                         Grid.Column="1"
-                           
                                         Margin="40,5,60,5"
                                         Padding="10,2"
                                         HorizontalOptions="End"

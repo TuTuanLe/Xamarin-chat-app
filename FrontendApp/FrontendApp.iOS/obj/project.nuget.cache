@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "YfoOJNDOxJMaWcu0LpZyO7H0G/CgkT3xt8YAXZTWGkfeZ32/IBkBXdlxJ4W4gEPRoJTr333+3sj2jJWrV6zIww==",
+  "dgSpecHash": "aEX16+DsnibfrwT3gMrnY4py6S10Qz+SESfN4BMJLS3clbX2qPwD3aQKyh5egAouA+uiYSosXe0P+NZmStO80A==",
   "success": true,
   "projectFilePath": "D:\\Xamarin\\Project_Chat_App\\FrontendApp\\FrontendApp.iOS\\FrontendApp.iOS.csproj",
   "expectedPackageFiles": [
@@ -19,7 +19,9 @@
     "C:\\Users\\tutua\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\tutua\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
     "C:\\Users\\tutua\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\tutua\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\tutua\\.nuget\\packages\\plugin.audiorecorder\\1.1.0\\plugin.audiorecorder.1.1.0.nupkg.sha512",
+    "C:\\Users\\tutua\\.nuget\\packages\\plugin.localnotification\\9.1.2\\plugin.localnotification.9.1.2.nupkg.sha512",
     "C:\\Users\\tutua\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\tutua\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "C:\\Users\\tutua\\.nuget\\packages\\system.io.pipelines\\6.0.1\\system.io.pipelines.6.0.1.nupkg.sha512",
