@@ -1,9 +1,14 @@
 # Project_xamarin_message
-[](https://res.cloudinary.com/uit-information/image/upload/v1642806339/tutuanle/image/upload/MicrosoftTeams-image_1_qjupxn.png)
+## Hình Ảnh Demo về dự án
+![Image](https://res.cloudinary.com/uit-information/image/upload/v1642806339/tutuanle/image/upload/MicrosoftTeams-image_1_qjupxn.png)
+## Link Youtobe
+![Nhấn vào đây](https://www.youtube.com/watch?v=NLgLuTEqc-s&t=7s)
+
 Cài đặt:
 1. .NET Core Api
 
 Chạy SQL Server
+```
 "ConnectionStrings": {
   "stringname":""
     Server=localDb/source;
@@ -13,7 +18,7 @@ Chạy SQL Server
     MultipleActiveResultSets=true
     "
  }
-
+```
 Configuration.GetConnectionString("stringname")
 
 Cài đặt Entity Framework Core .NET Command-line Tools
