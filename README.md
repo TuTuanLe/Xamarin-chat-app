@@ -6,7 +6,7 @@
 [Nhấn vào đây để xem ](https://www.youtube.com/watch?v=NLgLuTEqc-s&t=7s)
 
 ### Cài đặt:
-1. .NET Core Api
+NET Core Api
 
 Chạy SQL Server
 ```
@@ -20,8 +20,9 @@ Chạy SQL Server
     "
  }
 ```
+```
 Configuration.GetConnectionString("stringname")
-
+```
 Cài đặt Entity Framework Core .NET Command-line Tools
 
 ```
@@ -41,10 +42,11 @@ sau khi build đổi port của máy tính bạn
 ipconfig 
 ```
 sau đó vào
-mặc định ban đầu là localhost:...
+mặc định ban đầu là localhost:5001
 
-bạn đổi lại thành ip:...
+bạn đổi lại thành ip:5001
 
 sau đó build
-2. Xamarin
+
+
 
