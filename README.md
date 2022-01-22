@@ -90,7 +90,7 @@ sau đó build backend
 9. Vào backend sau đó nhấn chuột phải -> public -> Folder 
 10. Sau khi public thành công 
 11. ![](https://res.cloudinary.com/uit-information/image/upload/v1642809673/tutuanle/image/upload/Screenshot_2022-01-22_070021_eknkml.png)
-12. Vào thư mục nãy deploy rồi nén lại thành file `zip`
+12. Vào thư mục nãy deploy rồi nén tất cả lại thành file `zip`
 13. ![](https://res.cloudinary.com/uit-information/image/upload/v1642809801/tutuanle/image/upload/Screenshot_2022-01-22_070305_eexhmo.png)
 14. Vào somee.com -> websites-> website của bạn -> File manager -> Choose File (``Chọn file nãy nén thành file zip``) -> Upload and Unzip Archives 
 15. ![](https://user-images.githubusercontent.com/74090975/150615360-b608772a-3f30-48dc-bd65-5838ffff5668.png)
