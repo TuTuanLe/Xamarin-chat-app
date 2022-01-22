@@ -4,6 +4,8 @@
 ![Image](https://res.cloudinary.com/uit-information/image/upload/v1642806339/tutuanle/image/upload/MicrosoftTeams-image_1_qjupxn.png)
 ## Link Youtobe
 [Nhấn vào đây để xem ](https://www.youtube.com/watch?v=NLgLuTEqc-s&t=7s)
+## Link File Apk
+[Nhấn vào đây để tải ](https://drive.google.com/file/d/1PgRPa7_xqOYd1evFrL5DD-5SLPFix6lX/view?usp=sharing)
 
 ### Cài đặt:
 NET Core Api
