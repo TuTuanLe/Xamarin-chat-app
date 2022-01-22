@@ -70,5 +70,10 @@ namespace FrontendApp.Views
                 await config.homeViewModel.UpdateFriend(config.userModel.UserId);
             }
         }
+
+        private void imgButtonBack_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PopAsync();
+        }
     }
 }

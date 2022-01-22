@@ -203,7 +203,7 @@ namespace FrontendApp.ViewModels
             IsConnected = false;
 
             hubConnection = new HubConnectionBuilder()
-             .WithUrl($"http://192.168.1.8:5000/ChatHub")
+             .WithUrl($"{config.UrlWebsite}/ChatHub")
              .Build();
 
             hubConnection.On<List<MessageModel>>("ReceiveOldMessage", (chatmessages) =>
@@ -309,7 +309,7 @@ namespace FrontendApp.ViewModels
                 var content = new MultipartFormDataContent();
                 content.Add(new StreamContent(audioRecorderService.GetAudioFileStream()), "file", "record" + Messages[Messages.Count -1].messsageId.ToString());
                 var httpClient = new HttpClient();
-                var response = await httpClient.PostAsync("http://192.168.1.8:5000/api/message/video", content);
+                var response = await httpClient.PostAsync($"{config.UrlWebsite}/api/message/video", content);
                 CheckSendProgress = false;
             }
         }
@@ -338,7 +338,7 @@ namespace FrontendApp.ViewModels
                 _ = SendMessage(FriendModelS.UserId, "Send attachedFiles Photo.", FriendModelS.FriendKey, urlImage);
 
                 var httpClient = new HttpClient();
-                var response = await httpClient.PostAsync("http://192.168.1.8:5000/api/message/image", content);
+                var response = await httpClient.PostAsync($"{config.UrlWebsite}/api/message/image", content);
                 CheckSendProgress = false;
                
             }
@@ -359,7 +359,7 @@ namespace FrontendApp.ViewModels
         async Task Singin()
         {
             await hubConnection.StartAsync();
-            //await hubConnection.InvokeAsync("ReceiveFriend", FriendModelS);
+     
         }
 
         async Task Connect()

@@ -131,7 +131,7 @@ namespace FrontendApp.ViewModels
 
 
             hubConnection = new HubConnectionBuilder()
-           .WithUrl($"http://192.168.1.8:5000/ChatHub")
+           .WithUrl($"{config.UrlWebsite}/ChatHub")
            .Build();
         }
 

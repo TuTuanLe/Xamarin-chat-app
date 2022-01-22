@@ -36,7 +36,7 @@ namespace FrontendApp.Views
             activityIndicator.IsRunning = true;
 
             var httpClient = new HttpClient();
-            var response = await httpClient.GetStringAsync($"http://192.168.1.8:5000/api/user/{email.Text}&{password.Text}");
+            var response = await httpClient.GetStringAsync($"{config.UrlWebsite}/api/user/{email.Text}&{password.Text}");
             var User = JsonConvert.DeserializeObject<UserModel>(response);
 
       

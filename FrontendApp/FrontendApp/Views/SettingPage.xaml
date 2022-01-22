@@ -6,8 +6,8 @@
         <StackLayout Padding="15">
             <ImageButton Source="back48" BackgroundColor="Transparent" HorizontalOptions="Start" WidthRequest="35"></ImageButton>
             <Label></Label>
-            <ImageButton BorderColor="Gray" BorderWidth="1" x:Name="imagebtnURL" Source="avatar" CornerRadius="90" WidthRequest="110" BackgroundColor="Transparent"  HorizontalOptions="CenterAndExpand" ></ImageButton>
-            <Label Text="Tuan Le Tu" HorizontalOptions="CenterAndExpand" FontSize="20" FontAttributes="Bold" TextColor="Black" Padding="0,10,0,20"></Label>
+            <ImageButton BorderColor="Gray" BorderWidth="1" x:Name="imagebtnURL" Source="avatar" CornerRadius="90" WidthRequest="110" HeightRequest="110" Aspect="AspectFill" BackgroundColor="Transparent"  HorizontalOptions="CenterAndExpand" ></ImageButton>
+            <Label x:Name="txtUser" Text="Tuan Le Tu" HorizontalOptions="CenterAndExpand" FontSize="20" FontAttributes="Bold" TextColor="Black" Padding="0,10,0,20"></Label>
             <StackLayout Orientation="Horizontal">
                 <ImageButton Source="avatar" WidthRequest="30" CornerRadius="60" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"></ImageButton>
                 <Button Clicked="Logout_Clicked" x:Name="Logout" Text="Switch Account"  BackgroundColor="Transparent"></Button>
