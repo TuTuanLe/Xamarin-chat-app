@@ -28,7 +28,7 @@ namespace FrontendApp.Views
 
             string CodeOTP = K1.Text + K2.Text + K3.Text + K4.Text;
             var httpClient = new HttpClient();
-            var response = await httpClient.GetStringAsync($"http://192.168.1.8:5000/api/user/getUser/{CodeOTP}");
+            var response = await httpClient.GetStringAsync($"{config.UrlWebsite}/api/user/getUser/{CodeOTP}");
             var User = JsonConvert.DeserializeObject<UserModel>(response);
 
             if (User == null)

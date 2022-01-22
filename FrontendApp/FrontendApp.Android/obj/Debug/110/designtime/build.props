@@ -8,7 +8,7 @@ androiddextool=d8
 androidlinktool=
 androidlinkresources=
 androidpackageformat=apk
-embedassembliesintoapk=false
+embedassembliesintoapk=true
 androidlinkmode=none
 androidlinkskip=
 androidsdkbuildtoolsversion=30.0.2
@@ -27,8 +27,6 @@ androidincludedebugsymbols=true
 androidpackagenamingpolicy=lowercasecrc64
 _nugetassetstimestamp=637777640701218500
 typemapkind=strings-asm
-androidsupportedabis=arm64-v8a
-armeabi-v7a
-x86
-x86_64
+androidsupportedabis=armeabi-v7a
+arm64-v8a
 androidmanifestplaceholders=

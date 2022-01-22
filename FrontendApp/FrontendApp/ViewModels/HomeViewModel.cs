@@ -141,7 +141,7 @@ namespace FrontendApp.ViewModels
 
             IsConnected = false;
             hubConnection = new HubConnectionBuilder()
-             .WithUrl($"http://192.168.1.8:5000/ChatHub")
+             .WithUrl($"{config.UrlWebsite}/ChatHub")
              .Build();
 
             hubConnection.On<List<FriendModel>>("GetFriend", (getfriend) =>
@@ -230,7 +230,7 @@ namespace FrontendApp.ViewModels
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             var httpClient = new HttpClient();
 
-            var response = await httpClient.PutAsync("http://192.168.1.8:5000/api/friend/AcceptFriend", httpContent);
+            var response = await httpClient.PutAsync($"{config.UrlWebsite}/api/friend/AcceptFriend", httpContent);
         }
 
 

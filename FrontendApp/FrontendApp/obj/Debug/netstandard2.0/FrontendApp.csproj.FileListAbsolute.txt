@@ -32,7 +32,6 @@ D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp\obj\Debug\netstandard2.0\Fro
 D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp\obj\Debug\netstandard2.0\ref\FrontendApp.dll
 D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp\obj\Debug\netstandard2.0\FrontendApp.pdb
 D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp\obj\Debug\netstandard2.0\Views\TabbedMessaagePage.xaml.g.cs
-D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp\obj\Debug\netstandard2.0\FrontendApp.csproj.AssemblyReference.cache
 D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp\obj\Debug\netstandard2.0\Views\ChatPage.xaml.g.cs
 D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp\obj\Debug\netstandard2.0\Views\ProfilePage.xaml.g.cs
 D:\Xamarin\Project_Chat_App\FrontendApp\FrontendApp\obj\Debug\netstandard2.0\Views\StoryPage.xaml.g.cs

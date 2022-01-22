@@ -19,6 +19,6 @@ namespace FrontendApp.Helpers
 
         public static bool ScrollToEnd;
 
-
+        public static string UrlWebsite = "http://www.messagingchat.somee.com";
     }
 }

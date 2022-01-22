@@ -115,7 +115,7 @@ namespace FrontendApp.ViewModels
         {
             HttpClient client = new HttpClient();
             int userId = config.userModel.UserId;
-            var res =await client.GetStringAsync($"http://192.168.1.8:5000/api/friend/allFriends/{userId}");
+            var res =await client.GetStringAsync($"{config.UrlWebsite}/api/friend/allFriends/{userId}");
             Users = new ObservableCollection<UserModel> (JsonConvert.DeserializeObject<List<UserModel>>(res));
             foreach(var user in Users)
             {
@@ -139,7 +139,7 @@ namespace FrontendApp.ViewModels
             httpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             var httpClient = new HttpClient();
 
-            var response = await httpClient.PostAsync("http://192.168.1.8:5000/api/friend/RequestFriend", httpContent);
+            var response = await httpClient.PostAsync($"{config.UrlWebsite}/api/friend/RequestFriend", httpContent);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

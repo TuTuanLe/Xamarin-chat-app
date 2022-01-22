@@ -15,7 +15,7 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <Grid ColumnDefinitions="auto , * , auto"   HeightRequest="125" BackgroundColor="#1C76D2">
+            <Grid ColumnDefinitions="auto , * , auto"   HeightRequest="112" BackgroundColor="#1C76D2">
                 <Grid.Clip>
                     <PathGeometry Figures="m-19.50252,-0.49249l481.00001,0l0,34.37909c-241.67892,24.3453 -238.14215,30.90171 -481.00001,53.87691l0,-88.256z" />
                 </Grid.Clip>
@@ -140,7 +140,8 @@
                         <Label Grid.Column="0" Text="Recent Chat" FontAttributes="Bold" FontSize="20"  TextColor="Black"></Label>
                         <Label Grid.Column="1" Text="See all" HorizontalOptions="End" VerticalOptions="CenterAndExpand"></Label>
                     </Grid>
-                       <!--get list friend-->
+                        <ActivityIndicator x:Name="activityIndicator" Color="#289CCD" IsRunning="{Binding IsLoading, Mode=OneWay}" VerticalOptions="Center" HorizontalOptions="Center"></ActivityIndicator>
+                        <!--get list friend-->
                         <ListView  x:Name="lstFriends"  IsRefreshing="{Binding IsLoading, Mode=OneWay}"    ItemSelected="lstFriends_ItemSelected" ItemsSource="{Binding Friends}" HeightRequest="{Binding Friends.Count , Converter={ StaticResource  InverseHeightListView} }" RowHeight="70" HorizontalOptions="FillAndExpand"   VerticalOptions="CenterAndExpand" BackgroundColor="Transparent">
                         <ListView.ItemTemplate>
                             <DataTemplate>

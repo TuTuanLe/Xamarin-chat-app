@@ -20,7 +20,7 @@
                 <StackLayout Grid.Row="0">
                     <Frame Padding="0">
                         <Grid RowDefinitions="*" ColumnDefinitions="auto, *" Padding="5">
-                            <Image Grid.Row="0" Grid.Column="0"  Source="back48" WidthRequest="25" ></Image>
+                            <ImageButton x:Name="imgButtonBack" Clicked="imgButtonBack_Clicked" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="0"  Source="back48" WidthRequest="25" HeightRequest="25" ></ImageButton>
                             <SearchBar TextChanged="SearchBar_TextChanged" Grid.Row="0" Grid.Column="1" Placeholder="Search..." ></SearchBar>
                         </Grid>
                     </Frame>
@@ -43,7 +43,7 @@
                                                 CornerRadius="25"
                                                 HasShadow="True"
                                                  >
-                                                <Image Source="{Binding ImgURL}" WidthRequest="40" HeightRequest="40"></Image>
+                                                <Image Source="{Binding ImgURL}" WidthRequest="40" HeightRequest="40" Aspect="AspectFill"></Image>
                                             </Frame>
 
                                             <Frame IsVisible="{Binding Active}"

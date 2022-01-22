@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using FrontendApp.Helpers;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace FrontendApp.Views
         private async void Button_Clicked(object sender, EventArgs e)
         {
             var httpClient = new HttpClient();
-            var response = await httpClient.GetStringAsync($"http://192.168.1.8:5000/api/user/getOTP/{numberphone.Text}");
+            var response = await httpClient.GetStringAsync($"{config.UrlWebsite}/api/user/getOTP/{numberphone.Text}");
             await Navigation.PushAsync(new GetOTPPage(numberphone.Text));
         }
     }

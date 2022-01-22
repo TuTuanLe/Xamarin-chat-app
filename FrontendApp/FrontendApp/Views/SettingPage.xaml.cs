@@ -1,4 +1,5 @@
-﻿using FrontendApp.Services.Interfaces;
+﻿using FrontendApp.Helpers;
+using FrontendApp.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,10 @@ namespace FrontendApp.Views
     {
         public SettingPage()
         {
+            
             InitializeComponent();
+            imagebtnURL.Source = config.userModel.ImgURL;
+            txtUser.Text = config.userModel.FullName;
         }
 
         private async void Logout_Clicked(object sender, EventArgs e)
