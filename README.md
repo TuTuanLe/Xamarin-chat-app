@@ -81,7 +81,7 @@ sau đó build backend
 
 1. Đăng kí tài khoản
 2. Sau đó vào MS SQL sau đó chọn restore
-3. ![](https://res.cloudinary.com/uit-information/image/upload/v1642808759/tutuanle/image/upload/Screenshot_2022-01-22_064539_c1o3oa.png)
+3. ![Ảnh Minh Hoạ](https://res.cloudinary.com/uit-information/image/upload/v1642808759/tutuanle/image/upload/Screenshot_2022-01-22_064539_c1o3oa.png)
 4. Chọn upload and restore rồi chọn file ``MessengeChatTest.bak``
 5. copy chuỗi connection string và dán vào backend 
 6. ![](https://res.cloudinary.com/uit-information/image/upload/v1642809188/tutuanle/image/upload/Screenshot_2022-01-22_065254_q2ay5m.png)
